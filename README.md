@@ -1,1 +1,1 @@
-# Samrt-et-Tic-k---IA-pour-la-Finance
+# Smart-et-Tic-k---IA-pour-la-Finance

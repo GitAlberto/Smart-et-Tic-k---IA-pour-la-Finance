@@ -1,0 +1,37 @@
+# --- Traitement d'Image & Augmentation ---
+opencv-python-headless
+albumentations
+
+# --- OCR (Lecture du texte) ---
+easyocr
+
+# --- NLP & Machine Learning (CamemBERT) ---
+transformers==5.2.0
+sentencepiece
+torch==2.10.0
+
+# --- Manipulation de Données ---
+pandas
+openpyxl
+
+# --- Backend API & Requêtes externes ---
+fastapi
+uvicorn[standard]
+requests
+bcrypt==4.0.1
+sqlalchemy
+passlib[bcrypt]
+python-jose[cryptography]
+pydantic[email]
+pydantic_settings
+Faker
+
+# --- Frontend MVP (Interface Visuelle) ---
+streamlit
+
+# --- Entraînement du Modèle ---
+scikit-learn==1.8.0
+joblib
+
+# --- PostgreSQL Driver ---
+psycopg2-binary
