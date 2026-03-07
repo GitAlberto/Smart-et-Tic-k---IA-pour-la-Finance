@@ -1,0 +1,17 @@
+# Le dataset brut
+Dataset brute
+
+# L'environnement virtuel
+.venv
+
+# Le dataset augmenté
+dataset_augmente
+
+# Les fichiers de configuration
+*.env
+
+# Les fichiers de cache
+__pycache__
+
+# Les fichiers de logs
+*.log

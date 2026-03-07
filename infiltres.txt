@@ -1,0 +1,6 @@
+image copy 10_aug_0.png,"29.,39",413.0,732.0,False,0.41,
+image copy 10_aug_0.png,6 .95,76.0,687.0,False,0.61,
+image copy 10_aug_0.png,"18 ,18",546.0,548.0,False,0.57,
+image copy 10_aug_1.png,"2,.31",163.0,701.0,False,0.17,
+image copy 10_aug_1.png,(1 euro,371.0,410.0,False,0.86,
+image copy 10_aug_1.png,6.55957 francs),367.5,498.0,True,0.86,

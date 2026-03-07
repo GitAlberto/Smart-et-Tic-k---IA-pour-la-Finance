@@ -1,0 +1,583 @@
+nom_fichier,texte_brut,y_centre,x_gauche,est_un_prix,confiance_ocr,categorie_cible
+im10_aug_0.jpeg,Mini Bhiuis BERDER,832.0,353.0,False,0.02,Alimentation
+im10_aug_0.jpeg,2 Tabbule PoulEt 390,891.0,323.0,False,0.02,Alimentation
+im10_aug_0.jpeg,2ROCHER AlAnoes: BoR,920.5,321.0,False,0.05,Alimentation
+im10_aug_1.jpeg,MINI BATONS BERGER,831.0,349.0,False,0.99,Alimentation
+im10_aug_1.jpeg,2 TABOULE POULET 300,890.0,324.0,False,0.74,Alimentation
+im10_aug_1.jpeg,2 ROCHER AMANDES .80G,919.0,323.0,False,0.73,Alimentation
+im10_aug_2.jpeg,HIni BATOnS BERGER,831.0,351.0,False,0.29,Alimentation
+im10_aug_2.jpeg,TABDULE POULET 300,889.0,351.0,False,0.49,Alimentation
+im10_aug_2.jpeg,2 ROCHER AHandes . BoG,920.0,323.0,False,0.21,Alimentation
+im11_aug_0.jpeg,CHOCO/1,876.09,467.21,False,0.3,Alimentation
+im11_aug_0.jpeg,TRESOR,888.09,373.21,False,1.0,Alimentation
+im11_aug_0.jpeg,MATIN,899.7,510.14,False,0.85,Alimentation
+im11_aug_1.jpeg,Matin LE,888.0,495.0,False,0.59,Alimentation
+im11_aug_1.jpeg,TRESOR,844.56,367.05,False,0.98,Alimentation
+im11_aug_2.jpeg,CHOCO/I,878.62,469.06,False,0.34,Alimentation
+im11_aug_2.jpeg,TRESOR,893.73,373.97,False,1.0,Alimentation
+im11_aug_2.jpeg,MATIN,901.73,512.14,False,0.85,Alimentation
+im12_aug_0.jpeg,5OCL BIERE 3 MONTS,853.0,359.0,False,0.7,Boissons
+im12_aug_0.jpeg,BRIK LT 1/2 ECREM _,884.0,359.0,False,0.65,Alimentation
+im12_aug_1.jpeg,3 MONTS,852.0,521.0,False,0.5,Boissons
+im12_aug_1.jpeg,50CL BIERE,862.0,362.0,False,0.43,Boissons
+im12_aug_1.jpeg,BRIK ZT 1/2 ECREM.,890.5,361.0,False,0.23,Alimentation
+im12_aug_2.jpeg,5OCL BIERE 3 MONTS,851.0,359.0,False,0.5,Boissons
+im12_aug_2.jpeg,BRIK,882.0,358.0,False,1.0,Alimentation
+im12_aug_2.jpeg,LT 1/2 ECREM .,883.0,431.0,False,0.85,Alimentation
+im12_aug_1.jpeg,3 MONTS,852.0,521.0,False,0.5,Boissons
+im12_aug_1.jpeg,50CL BIERE,862.0,362.0,False,0.43,Boissons
+im12_aug_1.jpeg,BRIK ZT 1/2 ECREM.,890.5,361.0,False,0.23,Alimentation
+im12_aug_2.jpeg,5OCL BIERE 3 MONTS,851.0,359.0,False,0.5,Boissons
+im12_aug_2.jpeg,BRIK,882.0,358.0,False,1.0,Alimentation
+im12_aug_2.jpeg,LT 1/2 ECREM .,883.0,431.0,False,0.85,Alimentation
+im14_aug_0.jpeg,GRanoia Cookiesich,888.0,346.0,False,0.29,Alimentation
+im14_aug_0.jpeg,CoMP _,926.0,351.0,False,0.45,Alimentation
+im14_aug_0.jpeg,"MYRTIL ,",908.0,502.0,False,0.67,Alimentation
+im14_aug_0.jpeg,POMME,921.1,419.34,False,1.0,Alimentation
+im14_aug_1.jpeg,COAACPOMFOOMFTTCA,875.5,330.0,False,0.02,Alimentation
+im14_aug_1.jpeg,MYRTIL.,896.5,481.0,False,0.64,Alimentation
+im14_aug_1.jpeg,GRANOLA,846.42,339.05,False,1.0,Alimentation
+im14_aug_2.jpeg,GBAPuPOMME MYRTIL',917.0,349.0,False,0.11,Alimentation
+im14_aug_2.jpeg,COOKIES,888.04,459.06,False,0.96,Alimentation
+im14_aug_2.jpeg,GRANOLA,899.98,349.21,False,0.99,Alimentation
+im15_aug_0.jpeg,MACARONI,840.27,377.15,False,1.0,Alimentation
+im15_aug_0.jpeg,BOUL /VDE,858.27,494.17,False,0.65,Alimentation
+im15_aug_1.jpeg,MACARONI BOUL /VDE,877.0,385.0,False,0.74,Alimentation
+im15_aug_2.jpeg,Boul/vdE,872.0,489.0,False,0.2,Alimentation
+im16_aug_0.jpeg,CEREAL -,909.24,524.78,False,0.89,Alimentation
+im16_aug_0.jpeg,BON,917.47,473.28,False,0.89,Alimentation
+im16_aug_0.jpeg,BEAU,932.34,381.28,False,0.97,Alimentation
+im16_aug_0.jpeg,PLAQUETTE,946.84,462.17,False,1.0,Alimentation
+im16_aug_0.jpeg,COMTE,959.27,384.97,False,0.99,Alimentation
+im16_aug_1.jpeg,BEau,904.0,370.0,False,0.17,Alimentation
+im16_aug_1.jpeg,b6N TFREAE?,899.5,459.0,False,0.04,Alimentation
+im16_aug_1.jpeg,Cohte Plaquette 30,928.0,367.0,False,0.21,Alimentation
+im16_aug_2.jpeg,BEAU,923.0,381.0,False,0.98,Alimentation
+im16_aug_2.jpeg,&7BON,913.0,449.0,False,0.27,Alimentation
+im16_aug_2.jpeg,ETREAS,912.5,521.0,False,0.11,Alimentation
+im16_aug_2.jpeg,PLAQUETTE,942.57,458.68,False,0.99,Alimentation
+im16_aug_2.jpeg,CoMTE,953.74,381.14,False,0.58,Alimentation
+im17_aug_0.jpeg,INNOCENT TUTTI FRU,883.0,365.0,False,0.79,Boissons
+im17_aug_1.jpeg,INNOCENT TUTTI FRU,887.5,367.0,False,0.59,Boissons
+im17_aug_2.jpeg,innoCENT TUTTi FRU,875.0,356.0,False,0.18,Boissons
+im19_aug_0.jpeg,GINGER @EER oc1,919.0,426.0,False,0.42,Boissons
+im19_aug_0.jpeg,5 5OCL BIERE 3,950.0,406.0,False,0.32,Boissons
+im19_aug_0.jpeg,MoNTS,941.6,602.34,False,0.41,Boissons
+im19_aug_1.jpeg,GTNGERTBEER 5oci,909.5,410.0,False,0.28,Boissons
+im19_aug_1.jpeg,5OCL BIERE,932.5,405.0,False,0.68,Boissons
+im19_aug_1.jpeg,MoNTS,943.5,579.0,False,0.48,Boissons
+im19_aug_2.jpeg,BEER Süci,909.5,496.0,False,0.1,Boissons
+im19_aug_2.jpeg,5OCL,923.0,401.0,False,0.29,Boissons
+im19_aug_2.jpeg,GIMER,889.54,409.07,False,0.77,Boissons
+im19_aug_2.jpeg,BIERE,926.09,470.98,False,0.27,Boissons
+im19_aug_2.jpeg,Monis,939.07,576.96,False,0.58,Boissons
+im1_aug_0.jpeg,SAND .,785.0,339.0,False,0.76,Alimentation
+im1_aug_0.jpeg,BAG,801.0,475.0,False,0.52,Alimentation
+im1_aug_0.jpeg,MINI,787.63,409.96,False,0.99,Alimentation
+im1_aug_0.jpeg,'POUL,802.69,529.98,False,0.53,Alimentation
+im1_aug_1.jpeg,SAND MINI B6G POUL,815.0,341.0,False,0.14,Alimentation
+im1_aug_1.jpeg,2 Liquide 5.5%,875.0,317.0,False,0.72,Entretien
+im1_aug_1.jpeg,"2 Liquide 5,58",903.0,315.0,True,0.45,
+im1_aug_2.jpeg,1n2 Ee4,751.0,461.0,False,0.03,
+im1_aug_2.jpeg,Ciips Tistifiette,780.5,390.0,False,0.16,Alimentation
+im1_aug_2.jpeg,CecA cllo Vien Iko,839.5,394.0,False,0.03,Alimentation
+im20_aug_0.jpeg,[AIT,769.71,391.41,False,0.91,Alimentation
+im20_aug_0.jpeg,TARTIFLETTE,789.66,474.31,False,0.87,Alimentation
+im20_aug_0.jpeg,CHIPS,799.19,393.21,False,1.0,Alimentation
+im20_aug_0.jpeg,VIEN,840.32,535.28,False,0.62,Alimentation
+im20_aug_2.jpeg,2 LAIT 172 ECRT,746.0,371.0,False,0.42,Alimentation
+im20_aug_2.jpeg,CHIPS TARTIFLETTE,775.0,397.0,False,0.97,Alimentation
+im20_aug_2.jpeg,MEGA CLUB VIEN THo,833.0,397.0,False,0.66,Alimentation
+im1_aug_0.jpeg,SAND .,785.0,339.0,False,0.76,Alimentation
+im1_aug_0.jpeg,BAG,801.0,475.0,False,0.52,Alimentation
+im20_aug_0.jpeg,[AIT,769.71,391.41,False,0.91,Alimentation
+im20_aug_0.jpeg,TARTIFLETTE,789.66,474.31,False,0.87,Alimentation
+im20_aug_0.jpeg,CHIPS,799.19,393.21,False,1.0,Alimentation
+im20_aug_0.jpeg,VIEN,840.32,535.28,False,0.62,Alimentation
+im20_aug_1.jpeg,Ciips Tistifiette,780.5,390.0,False,0.16,Alimentation
+im20_aug_1.jpeg,CecA cllo Vien Iko,839.5,394.0,False,0.03,Alimentation
+im20_aug_2.jpeg,2 LAIT 172 ECRT,746.0,371.0,False,0.42,Alimentation
+im20_aug_2.jpeg,CHIPS TARTIFLETTE,775.0,397.0,False,0.97,Alimentation
+im20_aug_2.jpeg,MEGA CLUB VIEN THo,833.0,397.0,False,0.66,Alimentation
+im22_aug_0.jpeg,2 Lituvis MatIncLEGE,857.0,348.0,False,0.11,Alimentation
+im22_aug_0.jpeg,KG' SUCRE MORCEAUX,883.5,372.0,False,0.59,Alimentation
+im22_aug_1.jpeg,LIt.VIS MATIN LEGE,853.0,371.0,False,0.25,Alimentation
+im22_aug_1.jpeg,KG SUCRE MORCEAUX,880.0,369.0,False,0.82,Alimentation
+im22_aug_2.jpeg,2 LIt viS MatiN LEGE,855.0,347.0,False,0.24,Alimentation
+im22_aug_2.jpeg,KG' SUCRE MORCEAUX,882.5,371.0,False,0.81,Alimentation
+im23_aug_0.jpeg,CRACKER MINIZZA 85,754.0,392.0,False,0.88,Alimentation
+im23_aug_0.jpeg,CHIPS SAV POMME FR,808.0,393.0,False,0.54,Alimentation
+im23_aug_0.jpeg,MIKADO CHoCoLAT LA,833.5,394.0,False,0.23,Alimentation
+im23_aug_0.jpeg,PO.8 MINI BROWNIE,861.0,395.0,False,0.73,Alimentation
+im23_aug_0.jpeg,"MADELÈI . PEP /CHOC ,4",941.0,394.0,False,0.17,Alimentation
+im23_aug_1.jpeg,CRACKER MINIZZA 85,754.0,392.0,False,0.7,Alimentation
+im23_aug_1.jpeg,CHIPS SAV POMME FR,808.0,393.0,False,0.55,Alimentation
+im23_aug_1.jpeg,MIKADO CHOCOLAT LA,834.0,394.0,False,0.57,Alimentation
+im23_aug_1.jpeg,PQ.8 MINI BROWNIE,861.0,395.0,False,0.6,Alimentation
+im23_aug_1.jpeg,"MADELÈI . PEP /CHOC ,4",941.0,394.0,False,0.2,Alimentation
+im23_aug_2.jpeg,Cracterhinilin 85,753.0,389.0,False,0.04,Alimentation
+im23_aug_2.jpeg,CPS SaV Pone fa,807.0,391.0,False,0.02,Alimentation
+im23_aug_2.jpeg,Arbo Gaou,832.5,393.0,False,0.07,Alimentation
+im23_aug_2.jpeg,Moelri Pepioo,940.5,394.0,False,0.03,Alimentation
+im24_aug_0.jpeg,DMUIL {L7Sîv,896.0,327.0,False,0.0,
+im24_aug_1.jpeg,NOUIL . CLASSIC,928.47,366.72,False,0.54,Alimentation
+im24_aug_2.jpeg,NoUIL,863.56,346.98,False,0.14,Alimentation
+im24_aug_2.jpeg,CLASSIC,872.92,421.03,False,1.0,Alimentation
+im25_aug_0.jpeg,SAC . 120G WORLD MIX,823.0,363.0,False,0.39,Alimentation
+im25_aug_1.jpeg,2 SAC. 1206 HORLD MIX,827.0,336.0,False,0.29,Alimentation
+im25_aug_2.jpeg,MIX,822.44,576.41,False,0.63,Alimentation
+im25_aug_2.jpeg,HORLD,832.66,491.34,False,0.73,Alimentation
+im25_aug_2.jpeg,SAC,852.44,364.41,False,1.0,Alimentation
+im26_aug_0.jpeg,"DESPERADOS TEQ,",795.0,347.0,False,0.2,Boissons
+im26_aug_1.jpeg,DESPERADOS TEQ.,796.0,346.0,False,0.3,Boissons
+im26_aug_2.jpeg,DESPERADOS TEO,824.0,349.0,False,0.51,Boissons
+im27_aug_0.jpeg,GALETTE FoURCHdCO,876.5,340.0,False,0.11,Alimentation
+im27_aug_1.jpeg,GaLETTE FouRchoco,880.0,345.0,False,0.33,Alimentation
+im27_aug_2.jpeg,GALETTE,926.46,362.31,False,1.0,Alimentation
+im27_aug_2.jpeg,FOURCHOCO .,903.86,477.17,False,0.75,Alimentation
+im28_aug_0.jpeg,6 CAN.HEINEKEN 5OCL,868.0,358.0,False,0.54,Boissons
+im28_aug_1.jpeg,CANTHEINEKEN,854.5,372.0,False,0.33,Boissons
+im28_aug_2.jpeg,6 CAN HEINEKEN 5OCL,871.0,359.0,False,0.7,Boissons
+im29_aug_0.jpeg,BLO,821.0,564.28,False,0.98,Boissons
+im29_aug_0.jpeg,50CL,852.48,418.06,False,0.26,Boissons
+im29_aug_0.jpeg,BTE,863.0,364.28,False,0.99,Boissons
+im29_aug_1.jpeg,6 BTE SOCL CH TI BLO,822.0,331.0,False,0.23,Boissons
+im29_aug_2.jpeg,6 BTE 5OCL CF TI BLO,823.0,333.0,False,0.2,Boissons
+im2_aug_0.jpeg,SABLES NOIX coco,848.0,357.0,False,0.24,Alimentation
+im2_aug_1.jpeg,Coco,859.4,518.06,False,0.59,Alimentation
+im2_aug_1.jpeg,NOIx,871.39,456.14,False,0.49,Alimentation
+im2_aug_1.jpeg,SABLES,890.98,365.44,False,0.66,Alimentation
+im2_aug_2.jpeg,NDIX Coco,832.5,440.0,False,0.22,Alimentation
+im31_aug_0.jpeg,POM,796.15,580.6,False,0.99,Alimentation
+im31_aug_0.jpeg,POTE,806.91,517.21,False,0.96,Alimentation
+im31_aug_0.jpeg,'DINOSAURU,838.8,505.57,False,0.82,Alimentation
+im31_aug_0.jpeg,CHoC _,849.38,446.14,False,0.41,Alimentation
+im31_aug_0.jpeg,CHO,855.03,564.28,False,0.65,Alimentation
+im31_aug_0.jpeg,BIS _,860.13,396.66,False,0.76,Alimentation
+im31_aug_0.jpeg,+TAB,865.08,503.41,False,0.77,Alimentation
+im31_aug_0.jpeg,BEUR _,878.33,439.28,False,0.56,Alimentation
+im31_aug_0.jpeg,CHoCo,882.8,557.06,False,0.26,Alimentation
+im31_aug_0.jpeg,GOUTER,900.79,467.78,False,1.0,Alimentation
+im31_aug_0.jpeg,FOURCHOCO .,921.8,509.57,False,0.96,Alimentation
+im31_aug_0.jpeg,MINI,912.86,404.21,False,0.97,Alimentation
+im31_aug_0.jpeg,GALETTE,942.02,407.17,False,0.99,Alimentation
+im31_aug_1.jpeg,PoM PoTe Pow,801.0,468.0,False,0.07,Alimentation
+im31_aug_1.jpeg,BIS,844.5,393.0,False,1.0,Alimentation
+im31_aug_1.jpeg,#TAB . Cho,855.0,500.0,False,0.19,Alimentation
+im31_aug_1.jpeg,PT BEUR,869.0,399.0,False,0.91,Alimentation
+im31_aug_1.jpeg,MINI_,899.0,401.0,False,0.94,Alimentation
+im31_aug_2.jpeg,ET.72 POM POTE POM,797.0,393.0,False,0.51,Alimentation
+im31_aug_2.jpeg,BIS .CHOC . DINOSAURU,825.0,393.0,False,0.7,Alimentation
+im31_aug_2.jpeg,PT BEUR,854.0,392.0,False,0.97,Alimentation
+im31_aug_2.jpeg,"+TAB,CHO B",850.0,497.0,False,0.53,Alimentation
+im31_aug_2.jpeg,MINI GoutER Choco,880.0,391.0,False,0.45,Alimentation
+im31_aug_2.jpeg,GALETTE FOURCHOCO,905.5,391.0,False,0.98,Alimentation
+im32_aug_0.jpeg,SALADE GOURMANDE,814.0,355.0,False,0.71,Alimentation
+im32_aug_0.jpeg,SALIERE 250G SEL G,874.0,355.0,False,0.87,Alimentation
+im32_aug_0.jpeg,MOUTARDE ORIGINAL,905.0,354.0,False,0.79,Alimentation
+im32_aug_2.jpeg,BML7b: BouRTAMDET,815.5,353.0,False,0.0,
+im32_aug_2.jpeg,SALIEPE 2505 SEL*6,877.5,356.0,False,0.04,Alimentation
+im32_aug_2.jpeg,ORIGIvAE,902.5,483.0,False,0.13,Alimentation
+im32_aug_2.jpeg,Wontarde,911.0,355.0,False,0.13,Alimentation
+im33_aug_0.jpeg,DANONE SKYR NATURE,778.0,401.0,False,0.64,Alimentation
+im33_aug_0.jpeg,DES Gouda CuMiN 12,808.0,401.0,False,0.44,Alimentation
+im33_aug_0.jpeg,SAND .MINI BAG.POUL,864.0,401.0,False,0.47,Alimentation
+im33_aug_1.jpeg,DANONE SKYR NATURE,778.0,399.0,False,0.59,Alimentation
+im33_aug_1.jpeg,DES Gouda CuMIN 12,807.0,401.0,False,0.58,Alimentation
+im33_aug_1.jpeg,SAND .MINI BAG.POUL,864.0,401.0,False,0.57,Alimentation
+im33_aug_2.jpeg,NATURE,779.06,557.28,False,0.92,Alimentation
+im33_aug_2.jpeg,SKYR,791.35,490.14,False,1.0,Alimentation
+im33_aug_2.jpeg,DANONE,804.18,395.97,False,0.99,Alimentation
+im33_aug_2.jpeg,CUMIN,814.27,532.06,False,0.69,Alimentation
+im33_aug_2.jpeg,GOUDA,825.73,453.14,False,0.48,Alimentation
+im33_aug_2.jpeg,POUL,862.32,592.28,False,0.99,Alimentation
+im33_aug_2.jpeg,MINI,879.31,473.14,False,1.0,Alimentation
+im34_aug_1.jpeg,2 T BLANC POULET €,895.0,389.0,False,0.52,Alimentation
+im34_aug_2.jpeg,2 T BLANC POULET C,896.0,387.0,False,0.35,Alimentation
+im35_aug_0.jpeg,SAND .XXL . JAMB/EMM,901.5,370.0,False,0.38,Alimentation
+im35_aug_1.jpeg,SAND.XXL . JAMB/EMM,902.5,369.0,False,0.54,Alimentation
+im35_aug_2.jpeg,3415 TXL-JAMB7EMM,899.5,368.0,False,0.02,Alimentation
+im36_aug_0.jpeg,CHIPS BLEU,853.0,354.0,False,0.32,Alimentation
+im36_aug_0.jpeg,AUVERT7,866.0,511.0,False,0.33,Alimentation
+im36_aug_0.jpeg,CHIPS BLEU,853.0,354.0,False,0.32,Alimentation
+im36_aug_0.jpeg,AUVERT7,866.0,511.0,False,0.33,Alimentation
+im36_aug_1.jpeg,CHIPS BLEU AUVER.,867.0,361.0,False,0.43,Alimentation
+im36_aug_2.jpeg,ChiPs bleu (uvers,863.0,357.0,False,0.05,Alimentation
+im37_aug_0.jpeg,SAC,800.0,379.0,False,0.63,Alimentation
+im37_aug_0.jpeg,PET,841.0,469.0,False,0.99,Alimentation
+im37_aug_0.jpeg,SCHTROUMP,781.14,491.29,False,1.0,Alimentation
+im37_aug_0.jpeg,BLON,795.0,562.97,False,0.99,Boissons
+im37_aug_0.jpeg,LEFFE,812.54,485.68,False,1.0,Boissons
+im37_aug_0.jpeg,PERRIER,834.21,514.88,False,1.0,Boissons
+im37_aug_0.jpeg,LITRE,859.41,385.88,False,1.0,Boissons
+im37_aug_0.jpeg,BUENO,868.41,482.88,False,1.0,Alimentation
+im37_aug_0.jpeg,CACAO,879.31,566.06,False,0.95,Alimentation
+im37_aug_0.jpeg,KINDER,888.49,390.44,False,1.0,Alimentation
+im37_aug_0.jpeg,BUENO,896.99,488.68,False,0.99,Alimentation
+im37_aug_0.jpeg,KINDER,916.49,395.44,False,1.0,Alimentation
+im37_aug_1.jpeg,SaC,781.0,381.0,False,0.47,Alimentation
+im37_aug_1.jpeg,CL..8X25 LEFFE,803.0,382.0,False,0.18,Boissons
+im37_aug_1.jpeg,peUereRRHETE,844.5,463.0,False,0.03,
+im37_aug_1.jpeg,SCHTROUMP,772.09,496.68,False,1.0,Alimentation
+im37_aug_1.jpeg,BLON,791.73,565.41,False,0.99,Boissons
+im37_aug_1.jpeg,PERRIER,825.53,515.06,False,1.0,Boissons
+im37_aug_1.jpeg,LITRE,839.15,383.34,False,1.0,Boissons
+im37_aug_1.jpeg,KINDER,867.54,385.21,False,1.0,Alimentation
+im37_aug_1.jpeg,CACAO,877.17,561.34,False,0.97,Alimentation
+im37_aug_1.jpeg,BUENO,886.15,481.21,False,0.99,Alimentation
+im37_aug_1.jpeg,KINDER,896.04,388.14,False,1.0,Alimentation
+im37_aug_2.jpeg,"SAC, 2756",744.5,389.0,False,0.6,Alimentation
+im37_aug_2.jpeg,"CL,6X25",772.5,385.0,False,0.35,Boissons
+im37_aug_2.jpeg,SCHTROUMF,757.0,506.0,False,0.2,Alimentation
+im37_aug_2.jpeg,LitRE PET,800.0,377.0,False,0.32,Boissons
+im37_aug_2.jpeg,BuENO White,839.5,468.0,False,0.29,Alimentation
+im37_aug_2.jpeg,Bueno CaCAO,868.0,464.0,False,0.18,Alimentation
+im37_aug_2.jpeg,LEFFE,776.13,494.93,False,1.0,Boissons
+im37_aug_2.jpeg,BLON,783.2,571.96,False,0.99,Boissons
+im37_aug_2.jpeg,PERRIER,804.84,516.09,False,1.0,Boissons
+im37_aug_2.jpeg,KINDER,819.0,378.98,False,1.0,Alimentation
+im37_aug_2.jpeg,KINDER,846.98,375.01,False,1.0,Alimentation
+im38_aug_0.jpeg,2 VT BiANE 715 R 6,873.0,334.0,False,0.02,Alimentation
+im38_aug_1.jpeg,"75*6,0",874.0,511.0,False,0.2,
+im38_aug_1.jpeg,BLANC,889.58,423.28,False,0.2,Alimentation
+im38_aug_2.jpeg,458 0,874.0,513.0,False,0.12,
+im39_aug_0.jpeg,LITRE CoCa COLA,839.0,421.0,False,0.45,Boissons
+im39_aug_1.jpeg,LITRE CoCA CoLA,838.0,421.0,False,0.2,Boissons
+im39_aug_2.jpeg,LITRE COca' COlA,832.5,415.0,False,0.28,Boissons
+im40_aug_0.jpeg,Baloit Rouge NATUR,875.0,417.0,False,0.11,Boissons
+im40_aug_0.jpeg,KINDER HAPPY HIPPO,902.0,410.0,False,0.52,Alimentation
+im40_aug_1.jpeg,BADOIT RqUGE NATUR,870.0,412.0,False,0.34,Boissons
+im40_aug_1.jpeg,KINDER HAPPY HIPPO,897.0,411.0,False,0.71,Alimentation
+im40_aug_2.jpeg,BADOIT ROUGE NATUR,878.0,420.0,False,0.94,Boissons
+im40_aug_2.jpeg,KINDER HAPPY HIPPO,902.0,418.0,False,0.95,Alimentation
+im41_aug_0.jpeg,POM,796.15,580.6,False,0.99,Alimentation
+im41_aug_0.jpeg,POTE,806.91,517.21,False,0.96,Alimentation
+im41_aug_0.jpeg,POM,818.13,466.66,False,0.98,Alimentation
+im41_aug_0.jpeg,'DINOSAURU,838.8,505.57,False,0.82,Alimentation
+im41_aug_0.jpeg,CHoC _,849.38,446.14,False,0.41,Alimentation
+im41_aug_0.jpeg,CHO,855.03,564.28,False,0.65,Alimentation
+im41_aug_0.jpeg,BIS _,860.13,396.66,False,0.76,Alimentation
+im41_aug_0.jpeg,+TAB,865.08,503.41,False,0.77,Alimentation
+im41_aug_0.jpeg,BEUR _,878.33,439.28,False,0.56,Alimentation
+im41_aug_0.jpeg,CHoCo,882.8,557.06,False,0.26,Alimentation
+im41_aug_0.jpeg,GOUTER,900.79,467.78,False,1.0,Alimentation
+im41_aug_0.jpeg,FOURCHOCO .,921.8,509.57,False,0.96,Alimentation
+im41_aug_0.jpeg,MINI,912.86,404.21,False,0.97,Alimentation
+im41_aug_0.jpeg,GALETTE,942.02,407.17,False,0.99,Alimentation
+im41_aug_1.jpeg,PoM PoTe Pow,801.0,468.0,False,0.07,Alimentation
+im41_aug_1.jpeg,BIS,844.5,393.0,False,1.0,Alimentation
+im41_aug_1.jpeg,#TAB . Cho,855.0,500.0,False,0.19,Alimentation
+im41_aug_1.jpeg,PT BEUR,869.0,399.0,False,0.91,Alimentation
+im41_aug_1.jpeg,MINI_,899.0,401.0,False,0.94,Alimentation
+im41_aug_2.jpeg,PET,859.0,493.0,False,0.98,Divers/Bazar
+im41_aug_2.jpeg,VIVA,795.27,513.34,False,0.89,Alimentation
+im41_aug_2.jpeg,LiT_,805.59,456.06,False,0.36,Alimentation
+im41_aug_2.jpeg,BRICK,812.58,375.41,False,0.99,Alimentation
+im41_aug_2.jpeg,FROM .,820.31,543.21,False,0.87,Alimentation
+im41_aug_2.jpeg,FUSILLI,836.17,434.78,False,1.0,Alimentation
+im41_aug_2.jpeg,BOX,844.42,379.41,False,0.96,Alimentation
+im41_aug_2.jpeg,FORTE,852.72,520.28,False,1.0,Hygiène_et_Beauté
+im41_aug_2.jpeg,LAQUE,873.21,384.28,False,0.93,Hygiène_et_Beauté
+im41_aug_2.jpeg,B-READY,881.66,523.78,False,0.71,Alimentation
+im41_aug_2.jpeg,#*NUTELLA,902.24,385.31,False,0.57,Alimentation
+im41_aug_2.jpeg,CHocolAT,916.2,486.56,False,0.25,Alimentation
+im41_aug_2.jpeg,MIKADO,932.76,389.88,False,1.0,Alimentation
+im42_aug_0.jpeg,BTE SOCL CH'TI BLO,818.0,380.0,False,0.66,Boissons
+im42_aug_1.jpeg,BTE 50CLCH'TI BLO,821.0,379.0,False,0.29,Boissons
+im42_aug_2.jpeg,EoCl CHTTI BLO,808.5,426.0,False,0.07,Boissons
+im43_aug_0.jpeg,LAIT 172,873.5,340.0,False,0.75,Alimentation
+im43_aug_0.jpeg,BLE TYP',860.0,485.0,False,0.5,Alimentation
+im43_aug_0.jpeg,FARINE,840.49,391.03,False,1.0,Alimentation
+im43_aug_0.jpeg,"ECR,L",880.62,469.98,False,0.9,Alimentation
+im43_aug_1.jpeg,KG FARINE BLE TYP _,870.0,353.0,False,0.58,Alimentation
+im43_aug_1.jpeg,"LAIT 1/2 ECR,L",899.0,355.0,False,0.91,Alimentation
+im43_aug_2.jpeg,KG_FARINE BLE TYF,865.0,351.0,False,0.74,Alimentation
+im43_aug_2.jpeg,LAIT 1/2 ECR.L,893.0,349.0,False,0.59,Alimentation
+im44_aug_0.jpeg,5 LAIT 172,850.0,342.0,False,0.83,Alimentation
+im44_aug_0.jpeg,ECR.L,855.07,500.01,False,0.42,Alimentation
+im44_aug_1.jpeg,LAIT 1/2 ECR.L,871.0,379.0,False,0.68,Alimentation
+im44_aug_2.jpeg,ECR.L,882.22,515.14,False,0.94,Alimentation
+im44_aug_2.jpeg,LAIT,908.58,389.88,False,0.6,Alimentation
+im45_aug_1.jpeg,BADOIT RqUGE NATUR,870.0,412.0,False,0.34,Boissons
+im45_aug_1.jpeg,KINDER HAPPY HIPPO,897.0,411.0,False,0.71,Alimentation
+im46_aug_0.jpeg,CHIPS BLEU,853.0,354.0,False,0.32,Alimentation
+im46_aug_0.jpeg,AUVERT7,866.0,511.0,False,0.33,Alimentation
+im8_aug_0.jpeg,DEO . ORIGI,894.5,475.0,False,0.41,Hygiène_et_Beauté
+im8_aug_1.jpeg,BRUT #TO DEO: ORIGI,893.0,335.0,False,0.51,Hygiène_et_Beauté
+im8_aug_1.jpeg,GOUTER CHOCOLAT PQ,862.0,337.0,False,0.43,Alimentation
+im8_aug_2.jpeg,BRUT,910.0,341.0,False,1.0,Hygiène_et_Beauté
+im8_aug_2.jpeg,GOUTER CHocoLAR,872.0,337.0,False,0.16,Alimentation
+im9_aug_0.jpeg,8t6 DEo DRigi,889.0,409.0,False,0.01,Hygiène_et_Beauté
+im9_aug_0.jpeg,L{biuF TrOCOLZT Pu,858.5,336.0,False,0.0,Alimentation
+im9_aug_1.jpeg,BRUT #TO DEO: ORIGI,893.0,335.0,False,0.51,Hygiène_et_Beauté
+im9_aug_1.jpeg,GOUTER CHOCOLAT PQ,862.0,337.0,False,0.43,Alimentation
+im9_aug_2.jpeg,BRUT,910.0,341.0,False,1.0,Hygiène_et_Beauté
+im9_aug_2.jpeg,DEO . ORIGI,894.5,475.0,False,0.41,Hygiène_et_Beauté
+im9_aug_2.jpeg,GOUTER CHocoLAR,872.0,337.0,False,0.16,Alimentation
+orig_im1.jpeg,SAND MINI BAq PJUL,816.0,341.0,False,0.11,Alimentation
+orig_im10.jpeg,MINI BATONS BERGER,834.0,351.0,False,0.78,Alimentation
+orig_im10.jpeg,2 TABOULE POULET,892.5,325.0,False,0.92,Alimentation
+orig_im10.jpeg,2 ROCHER  AMANDES . 80G,921.0,325.0,False,0.53,Alimentation
+orig_im11.jpeg,TRESOR CHOCo7NOIS,863.0,369.0,False,0.37,Alimentation
+orig_im11.jpeg,BOUT 5OCL MATIN LE,891.0,367.0,False,0.77,Alimentation
+orig_im12.jpeg,50CL BIERE 3 MONTS,853.0,359.0,False,0.64,Boissons
+orig_im12.jpeg,BRIK,886.0,360.0,False,1.0,Alimentation
+orig_im12.jpeg,LT 1/2 ECREM _,884.0,433.0,False,0.35,Alimentation
+orig_im13.jpeg,DANONE SKYR NATURE,778.0,401.0,False,0.64,Alimentation
+orig_im13.jpeg,DES Gouda CuMiN 12,808.0,401.0,False,0.44,Alimentation
+orig_im13.jpeg,SAND .MINI BAG.POUL,864.0,401.0,False,0.47,Alimentation
+orig_im14.jpeg,GRANOLA COOKIES CH,876.0,342.0,False,0.91,Alimentation
+orig_im14.jpeg,"COMP . POMME MYRTIL,",906.0,343.0,False,0.66,Alimentation
+orig_im15.jpeg,MACARONI BOUL/VDE,877.5,384.0,False,0.78,Alimentation
+orig_im16.jpeg,& BON CEREAL,900.0,438.0,False,0.97,Alimentation
+orig_im16.jpeg,COMTE PLAQUETTE 30,929.0,369.0,False,0.91,Alimentation
+orig_im17.jpeg,INNDCENT TUTTI FRU,887.0,367.0,False,0.5,Boissons
+orig_im18.jpeg,Liquide 5.5*,878.0,355.0,False,0.52,Entretien
+orig_im19.jpeg,GINGER BEER 5OCL,914.0,420.0,False,0.81,Boissons
+orig_im19.jpeg,3 5OCL BIERE,942.0,396.0,False,0.67,Boissons
+orig_im19.jpeg,3 MONTS,942.0,570.0,False,0.38,Boissons
+orig_im2.jpeg,SAELES NOIX coco,848.5,356.0,False,0.36,Alimentation
+orig_im20.jpeg,2 LaIT 172 ECR.,746.0,373.0,False,0.26,Alimentation
+orig_im20.jpeg,CHIPS TARTIFLETTE,775.0,397.0,False,0.97,Alimentation
+orig_im20.jpeg,MEGA CLUB VIEN THo,833.0,397.0,False,0.71,Alimentation
+orig_im21.jpeg,DANONE SKYR NATURE,778.0,399.0,False,0.59,Alimentation
+orig_im21.jpeg,DES Gouda CuMIN 12,807.0,401.0,False,0.58,Alimentation
+orig_im21.jpeg,SAND .MINI BAG.POUL,864.0,401.0,False,0.57,Alimentation
+orig_im22.jpeg,2 LIT.VIS MaTIN LEGE,852.0,345.0,False,0.47,Alimentation
+orig_im22.jpeg,KG SUCRE MORCEAUX,880.0,369.0,False,0.78,Alimentation
+orig_im23.jpeg,CRACKER MINIZZA 85,754.0,392.0,False,0.7,Alimentation
+orig_im23.jpeg,CHIPS SAV POMME FR,808.0,393.0,False,0.55,Alimentation
+orig_im23.jpeg,MIKADO CHOCOLAT LA,834.0,394.0,False,0.57,Alimentation
+orig_im23.jpeg,PQ.8 MINI BROWNIE,861.0,395.0,False,0.6,Alimentation
+orig_im23.jpeg,"MADELÈI . PEP /CHOC ,4",941.0,394.0,False,0.2,Alimentation
+orig_im24.jpeg,NOUIL CLASSIC 906,901.0,359.0,False,0.42,Alimentation
+orig_im25.jpeg,2 SAC. 120G WORLD MIX,824.0,335.0,False,0.63,Alimentation
+orig_im26.jpeg,DESPERADOS TEO _,812.0,351.0,False,0.41,Boissons
+orig_im27.jpeg,GALETTE FoURcHoCO,888.5,348.0,False,0.08,Alimentation
+orig_im28.jpeg,6 CAN HEINEKEN 5OCL,872.0,359.0,False,0.66,Boissons
+orig_im29.jpeg,6 BTE 5OCL CF TI BLO,823.0,333.0,False,0.21,Boissons
+orig_im3.jpeg,MiLKA Choco TRIO,878.0,363.0,False,0.52,Alimentation
+orig_im30.jpeg,Tiquide 5.5%,884.5,360.0,False,0.54,Entretien
+orig_im31.jpeg,ET.72 POM'POTE POM,798.0,393.0,False,0.51,Alimentation
+orig_im31.jpeg,BIS.CHOC.DINOSAURU,825.5,391.0,False,0.91,Alimentation
+orig_im31.jpeg,PT BEUR. +TAB CHO,852.0,393.0,False,0.87,Alimentation
+orig_im31.jpeg,MINI GOUTER Choco,881.0,393.0,False,0.45,Alimentation
+orig_im31.jpeg,GALETTE FOURCHOCO .,908.0,390.0,False,0.89,Alimentation
+orig_im32.jpeg,SALADE GOURMANDE,814.0,355.0,False,0.8,Alimentation
+orig_im32.jpeg,SALIERE 250G SEL G,874.0,355.0,False,0.69,Alimentation
+orig_im32.jpeg,MOUTARDE ORIGINAL,905.0,354.0,False,0.9,Alimentation
+orig_im33.jpeg,DANONE SKYR NATURE,778.0,399.0,False,0.67,Alimentation
+orig_im33.jpeg,DES Gouda CuMIN 12,807.0,401.0,False,0.57,Alimentation
+orig_im33.jpeg,SAND .MINI BAG.POUL,863.0,401.0,False,0.7,Alimentation
+orig_im34.jpeg,2 T BLANC POULET C,896.0,387.0,False,0.35,Alimentation
+orig_im35.jpeg,SAND XXL . JAMB/ EMM,901.5,370.0,False,0.38,Alimentation
+orig_im36.jpeg,CHIPS BLEU AUVER. 1,870.0,363.0,False,0.73,Alimentation
+orig_im37.jpeg,SAC.2756 SCHTROUMP,765.0,383.0,False,0.56,Alimentation
+orig_im37.jpeg,CL.6X25 LEFFE BLON,793.0,383.0,False,0.87,Boissons
+orig_im37.jpeg,LITRE PET PERRIER,822.0,383.0,False,0.85,Boissons
+orig_im37.jpeg,KINDER BUENO WHITE,849.0,383.0,False,0.66,Alimentation
+orig_im37.jpeg,KINDER BUENO CACAO,878.0,382.0,False,0.62,Alimentation
+orig_im38.jpeg,2VDT BLANC 125 B.D,874.0,339.0,False,0.54,Alimentation
+orig_im39.jpeg,LITRE CoCa COLA,842.0,423.0,False,0.45,Boissons
+orig_im4.jpeg,BRICK TIT.VIVA 1/2,786.0,378.0,False,0.43,Alimentation
+orig_im4.jpeg,BOX FUSILLI FROM.I,815.0,379.0,False,0.84,Alimentation
+orig_im4.jpeg,LAQUE 300 FORTE,845.0,379.0,False,0.97,Hygiène_et_Beauté
+orig_im4.jpeg,##NUTELLA B-READY,874.5,376.0,False,0.83,Alimentation
+orig_im4.jpeg,MIKADO CHOCoLAT,904.0,378.0,False,0.3,Alimentation
+orig_im40.jpeg,BADOIT ROUGE NATUR,878.0,420.0,False,0.94,Boissons
+orig_im40.jpeg,KINDER HAPPY HIPPO,902.0,418.0,False,0.95,Alimentation
+orig_im41.jpeg,LIT.EVIAN PET,870.0,365.0,False,0.84,Boissons
+orig_im42.jpeg,BTE 5OCL CH'TI BLO,818.0,380.0,False,0.66,Boissons
+orig_im43.jpeg,KG FARINE BLE TYP _,870.0,353.0,False,0.58,Alimentation
+orig_im43.jpeg,"LAIT 1/2 ECR,L",899.0,355.0,False,0.91,Alimentation
+orig_im44.jpeg,LAIT 1/2 ECR.L,871.0,379.0,False,0.7,Alimentation
+orig_im45.jpeg,Liquide 5.5%,898.0,326.0,False,0.56,Entretien
+orig_im46.jpeg,"Liquide 5.5""",867.0,384.0,False,0.26,Entretien
+orig_im46.jpeg,"Liquide 5,5*",897.0,384.0,False,0.62,Entretien
+orig_im47.jpeg,"0,890 Epicerie 5.5 %",794.5,270.0,True,0.63,
+orig_im48.jpeg,PRINGLES ORIGINAL,805.5,368.0,False,0.98,Alimentation
+orig_im48.jpeg,BTE 5OCL HOEGAARDE,836.0,369.0,False,0.89,Boissons
+orig_im49.jpeg,Epicerie 5.5%,757.0,351.0,False,0.97,Alimentation
+orig_im5.jpeg,INF .DRAINAGRELIMIN,884.5,359.0,False,0.87,Boissons
+orig_im50.jpeg,75CL GOUDALE BLOND,796.0,366.0,False,0.27,Boissons
+orig_im51.jpeg,Epicerie 5.5%,812.5,330.0,False,0.98,Alimentation
+orig_im52.jpeg,75CLLA GOUDALE AM,852.0,366.0,False,0.47,Boissons
+orig_im53.jpeg,ET.25 STICK ESPRES,818.0,335.0,False,0.74,Alimentation
+orig_im54.jpeg,PO.7 MIMI SAVANE C,794.5,386.0,False,0.42,Alimentation
+orig_im55.jpeg,VOLVIC 50 CL,763.0,383.0,False,0.88,Boissons
+orig_im55.jpeg,BOUT 5OCL MATIN LE,795.0,385.0,False,0.69,Alimentation
+orig_im6.jpeg,SALADE GOURMANDE,845.0,369.0,False,0.76,Alimentation
+orig_im7.jpeg,BADOIT VERTE 7ATUR,864.0,330.0,False,0.35,Boissons
+orig_im7.jpeg,PAQT .SABLE 125G M_,898.0,329.0,False,0.46,Alimentation
+orig_im7.jpeg,SABLE TouT ChoCo,928.5,329.0,False,0.23,Alimentation
+orig_im8.jpeg,Liquide 5.5*,878.0,355.0,False,0.52,Entretien
+orig_im9.jpeg,GOUTER CHOCOLAT PQ,862.0,337.0,False,0.65,Alimentation
+orig_im9.jpeg,BRUT ATO DEO.ORIGI,893.0,337.0,False,0.59,Hygiène_et_Beauté
+orig_image copy 10.png,IHAgINE suchard NOEL 3300R,81.5,440.0,False,0.12,Alimentation
+orig_image copy 10.png,BOUCHERIE /ELaboREE,102.0,461.0,False,0.4,Alimentation
+orig_image copy 10.png,Farce,119.0,435.0,False,0.22,Alimentation
+orig_image copy 10.png,LEGUMes FERIAL 4000,119.0,495.0,False,0.27,Alimentation
+orig_image copy 10.png,CHARCUTERIE LS,138.5,457.0,False,0.73,Alimentation
+orig_image copy 10.png,Jambok Sup AC 4T LR,160.0,432.0,False,0.21,Alimentation
+orig_image copy 10.png,StK Soja IndIENNE,205.0,431.0,False,0.3,Alimentation
+orig_image copy 10.png,BEurrE,234.0,429.0,False,0.11,Alimentation
+orig_image copy 11.png,BrIoche Ires PA 4000+2o00 OFF_,332.5,189.0,False,0.06,Alimentation
+orig_image copy 11.png,PFiN Au LAi,358.0,187.0,False,0.1,Alimentation
+orig_image copy 11.png,"F.lihAND heuhier V 3+1 dF ,40gg",388.0,187.0,False,0.02,Alimentation
+orig_image copy 11.png,"sce Tohate #rouenc , bio Jb '2006",416.0,185.0,False,0.05,Alimentation
+orig_image copy 11.png,Gkocchi,456.0,183.0,False,0.07,Alimentation
+orig_image copy 11.png,Poeler Lustucku 5150,458.0,239.0,False,0.43,Alimentation
+orig_image copy 11.png,BahAke CAuendiSH,483.5,181.0,False,0.17,Alimentation
+orig_image copy 11.png,coton TiGe 810,511.0,179.0,False,0.1,Hygiène_et_Beauté
+orig_image copy 11.png,Jhhbok Sup DD UPF V 4TR,540.0,179.0,False,0.07,Alimentation
+orig_image copy 11.png,"ShMAxi Tore 5: MAT,_R pio Uaz",569.0,177.0,False,0.06,Alimentation
+orig_image copy 11.png,"PaIn HIE BID CPlT bdulahe, 5006",596.0,175.0,False,0.03,Alimentation
+orig_image copy 11.png,suche Vahille Alsh St X12 900,625.0,175.0,False,0.09,Alimentation
+orig_image copy 11.png,oreclhIEITE AlAde . DArillh 5008,655.0,173.0,False,0.05,Alimentation
+orig_image copy 11.png,"beuR , MoUl. 62: Dk",682.0,173.0,False,0.04,Alimentation
+orig_image copy 11.png,Veloute FRlik PahAche K16,713.0,171.0,False,0.08,Alimentation
+orig_image copy 11.png,Mub enjoy J5cl Decors Ass,743.0,171.0,False,0.1,Divers/Bazar
+orig_image copy 11.png,No Qre BoC1 pohahsk BEI,772.0,173.0,False,0.03,Divers/Bazar
+orig_image copy 11.png,Sprele' V MAr tete silicohe,800.5,170.0,False,0.02,Divers/Bazar
+orig_image copy 12.png,Parmesan DOP,158.0,99.0,False,0.95,Alimentation
+orig_image copy 12.png,Speck premiun,176.0,97.0,False,0.97,Alimentation
+orig_image copy 12.png,Farine,191.0,97.0,False,1.0,Alimentation
+orig_image copy 12.png,Brochettes fromage,208.0,93.0,False,0.8,Alimentation
+orig_image copy 12.png,Saumon fumé de Norvè,224.0,93.0,False,0.62,Alimentation
+orig_image copy 12.png,Oeufs Labe,240.0,91.0,False,0.97,Alimentation
+orig_image copy 12.png,Confiture,256.0,89.0,False,1.0,Alimentation
+orig_image copy 12.png,Batônnets,273.0,86.0,False,1.0,Alimentation
+orig_image copy 13.png,Dos de cabillaud MSC,350.0,106.0,False,0.59,Alimentation
+orig_image copy 13.png,Pavé,440.5,113.0,False,1.0,Alimentation
+orig_image copy 14.png,42 EAu @E PERRIER,152.0,102.0,False,0.28,Boissons
+orig_image copy 14.png,Cocr ColA 2oCL,165.0,101.0,False,0.09,Boissons
+orig_image copy 14.png,UhGlet De VeAj,180.0,101.0,False,0.11,Restauration
+orig_image copy 14.png,cheesebURgeR,193.0,98.0,False,0.13,Restauration
+orig_image copy 15.png,6 CUBE POST-IT ECO,362.0,42.0,False,0.4,Divers/Bazar
+orig_image copy 15.png,6 BRISTOL EXACOMPTA,381.0,42.0,False,0.65,Divers/Bazar
+orig_image copy 15.png,6 SET 120 FEUTRES AC,404.0,40.0,False,0.86,Divers/Bazar
+orig_image copy 15.png,6_FIG SAC CABAS STIT,425.0,40.0,False,0.6,Divers/Bazar
+orig_image copy 16.png,4 PETITS,763.0,315.0,False,1.0,
+orig_image copy 16.png,4 COQUILLE ST,797.0,309.0,False,0.93,Alimentation
+orig_image copy 16.png,4 COQUILLE ST JACQUE,832.0,305.0,False,0.57,Alimentation
+orig_image copy 16.png,1KG COUSCOUS FIN,867.0,340.0,False,0.43,Alimentation
+orig_image copy 16.png,4 ROTI JAMBON HERBE,903.0,297.0,False,0.58,Alimentation
+orig_image copy 16.png,4 SYLPHIDE BLEU,939.5,290.0,False,0.91,Alimentation
+orig_image copy 16.png,4 HAUT,975.0,287.0,False,0.82,Alimentation
+orig_image copy 16.png,3X2OCL,1014.0,320.0,False,0.66,
+orig_image copy 16.png,1/2 PULPE,1054.0,317.0,False,0.93,Alimentation
+orig_image copy 16.png,CESAR,1089.0,309.0,False,1.0,Alimentation
+orig_image copy 16.png,6 2KG ADULT BF,1129.0,263.0,False,0.76,Alimentation
+orig_image copy 16.png,4 CAM CAMP PDT/DELIC,1169.0,258.0,False,0.46,Alimentation
+orig_image copy 16.png,4 CDO CREHE NouGAT,1208.5,252.0,False,0.58,Alimentation
+orig_image copy 16.png,6 X6 RLX,1338.0,230.0,False,0.65,Entretien
+orig_image copy 16.png,6 10 SACS POUB 1OOL,1482.0,208.0,False,0.6,Entretien
+orig_image copy 17.png,6 SACS ISOTHERME Pay,1218.5,45.0,False,0.3,Divers/Bazar
+orig_image copy 17.png,4 {86 IRTAFA0ZZa,1303.0,53.0,False,0.05,
+orig_image copy 17.png,180G BRIQUE Bio CA,1354.5,116.0,False,0.23,Alimentation
+orig_image copy 17.png,5 8286 SRohte APOn,1443.0,58.0,False,0.02,
+orig_image copy 17.png,3206 SALADE VEIEZISD,1499.5,115.0,False,0.14,Alimentation
+orig_image copy 17.png,400G BOEUF BOURGUI,1558.5,121.0,False,0.38,Alimentation
+orig_image copy 17.png,6OCL Boost ANAMAN,1627.0,124.0,False,0.21,Boissons
+orig_image copy 17.png,150G GENOISE CERIS,1696.0,134.0,False,0.68,Alimentation
+orig_image copy 17.png,4 9bose@oRPraCAMAR,1790.5,71.0,False,0.01,
+orig_image copy 17.png,4 30060 CoHfi T BcANAro,1867.5,83.0,False,0.02,Alimentation
+orig_image copy 17.png,4 GROS MACARONS X2,1966.5,93.0,False,0.51,Alimentation
+orig_image copy 17.png,4 FLAN X,2028.5,98.0,False,0.9,Alimentation
+orig_image copy 17.png,DUO ROYAL T/P/R,2095.5,151.0,False,0.73,
+orig_image copy 17.png,6 ESSUIE TT RENOVA,2280.0,95.0,False,0.57,Entretien
+orig_image copy 18.png,SAC POIGN,331.0,371.0,False,0.47,Divers/Bazar
+orig_image copy 18.png,400G,379.0,373.0,False,0.96,Alimentation
+orig_image copy 18.png,MALTESERS POC,379.0,457.0,False,0.68,Alimentation
+orig_image copy 18.png,coca COLA B(6X}ScI,428.0,371.0,False,0.08,Boissons
+orig_image copy 18.png,CRISTAL,475.0,372.0,False,0.54,Alimentation
+orig_image copy 18.png,KINDER BuENO,567.5,375.0,False,0.44,Alimentation
+orig_image copy 18.png,1kg PoT,613.0,377.0,False,0.41,Alimentation
+orig_image copy 19.png,266G,313.0,105.0,False,0.99,Alimentation
+orig_image copy 19.png,1976 SHARTIES POCH,342.0,102.0,False,0.63,Alimentation
+orig_image copy 19.png,268G MILKA MOHENTS,372.0,101.0,False,0.66,Alimentation
+orig_image copy 19.png,120G KINDER,401.0,101.0,False,0.79,Alimentation
+orig_image copy 19.png,90G RAFFAELLO BOUL,430.0,99.0,False,0.39,Alimentation
+orig_im15.jpeg,2 Liquide 5.5%,823.0,361.0,False,0.84,Entretien
+orig_image copy 19.png,80G KINDER BUENO €,461.0,97.0,False,0.72,Alimentation
+orig_image copy 19.png,174G KINDER MIX BO,491.0,95.0,False,0.43,Alimentation
+orig_image copy 19.png,AHANDES EN PoUDRE,521.0,91.0,False,0.35,Alimentation
+orig_image copy 19.png,kinder nIX Puzzle,539.0,91.0,False,0.56,Alimentation
+orig_image copy 19.png,117g SACH,569.0,89.0,False,0.58,Alimentation
+orig_image copy 2.png,BOCAL,529.0,60.0,False,1.0,Alimentation
+orig_image copy 2.png,PAQUET,558.0,60.0,False,0.98,Alimentation
+orig_image copy 2.png,SACHETS DE,586.0,60.0,False,0.99,Alimentation
+orig_image copy 2.png,SACHET,614.0,60.0,False,1.0,Alimentation
+orig_image copy 2.png,BOUTEILLE,672.0,60.0,False,1.0,Boissons
+orig_image copy 2.png,DINDE DE,702.0,60.0,False,0.68,Alimentation
+orig_image copy 2.png,BOÎTE,729.0,60.0,False,1.0,Alimentation
+orig_image copy 2.png,BOÎTE DE,758.0,60.0,False,0.86,Alimentation
+orig_image copy 2.png,PAQUET,816.0,60.0,False,0.95,Alimentation
+orig_image copy 2.png,BûCHE GLACÉE,845.0,60.0,False,0.5,Alimentation
+orig_image copy 2.png,"PANETTONE ,",873.0,60.0,False,0.95,Alimentation
+orig_image copy 2.png,BOÎTE DE,902.0,60.0,False,0.89,Alimentation
+orig_image copy 21.png,DIABDLO,150.0,73.0,False,0.37,Boissons
+orig_image copy 22.png,"U.BEN '$ , RISoTTO 3 FRohaG , 2506",537.0,137.0,False,0.23,Alimentation
+orig_image copy 22.png,"U.BENS , RIZ 2MH Tohate H,2506",569.0,137.0,False,0.3,Alimentation
+orig_image copy 22.png,"U.BEN 'S , RIZ 2HN Chahp",599.0,138.0,False,0.12,Alimentation
+orig_image copy 22.png,FaNtA ORANge,630.5,134.0,False,0.08,Boissons
+orig_image copy 23.png,GatEAU YAoURT 1896 HR,1258.0,263.0,False,0.18,Alimentation
+orig_image copy 23.png,SALADE CONCoHBRE/FROH BLC 5006,1331.0,263.0,False,0.45,Alimentation
+orig_image copy 23.png,TABOULE POULET BONDUELLE 5006,1406.5,265.0,False,0.49,Alimentation
+orig_image copy 23.png,BLC DE DINDE LE GauloiS. 1606,1482.0,263.0,False,0.52,Alimentation
+orig_image copy 23.png,YT CHEVRE BRASSE VANILLE 4x1006,1557.5,263.0,False,0.48,Alimentation
+orig_image copy 23.png,AHANDE DECORTIQUE ST 500 GR,1633.0,264.0,False,0.38,Alimentation
+orig_image copy 23.png,AT LETTRE COULEUR 25HM Xioo BTE,1709.0,263.0,False,0.36,Divers/Bazar
+orig_image copy 25.png,Meli-Melo,275.0,37.0,False,0.92,Restauration
+orig_image copy 25.png,1/2 Ch.,292.0,35.0,False,0.83,Restauration
+orig_image copy 25.png,Expresso,312.0,35.0,False,1.0,Restauration
+orig_image copy 25.png,Huitres Chaudes,330.0,33.0,False,1.0,Restauration
+orig_image copy 26.png,BT DE UITTEL,71.0,338.0,False,0.93,Boissons
+orig_image copy 26.png,IcE TEA,111.0,335.0,False,0.43,Boissons
+orig_image copy 26.png,BAVETTE BLACK,152.0,324.0,False,0.87,Restauration
+orig_image copy 26.png,POULET JANZE,204.0,330.0,False,0.91,Restauration
+orig_image copy 26.png,café,305.0,335.0,False,0.74,Restauration
+orig_image copy 27.png,TARTE CITRON MERINGUEE,24.0,100.0,False,0.86,Restauration
+orig_image copy 27.png,FILET DE LIEU,44.0,96.0,False,0.76,Restauration
+orig_image copy 27.png,PETIT PAIN CLASSIQUE,65.0,96.0,False,0.52,Restauration
+orig_image copy 27.png,1 AIGUILLETTES DE POULET,86.0,78.0,False,0.83,Restauration
+orig_image copy 27.png,1 ILE FLOTTANTE GOURMANDE,129.0,76.0,False,0.91,Restauration
+orig_image copy 6.png,40001897 RATEAU FEUILLE+HCH BH6490 A/B,868.5,295.0,False,0.27,Divers/Bazar
+orig_image copy 6.png,40001898 RATEAU FEUILLE PLHSŸ. 22 DENTS,965.0,293.0,False,0.36,Divers/Bazar
+orig_image copy 6.png,12005497 '2doML DEO BRUT SPORT STYLE,1060.5,288.0,False,0.1,Hygiène_et_Beauté
+orig_image copy 7.png,PLATS PGcoHPRGKSMEKTCAR 2656,1210.0,173.0,False,0.14,Alimentation
+orig_image copy 7.png,Ix ABBAYE,1257.5,236.0,False,0.88,Alimentation
+orig_image copy 7.png,FRUITS/LFGUMES LS (SECS PLANTS,1315.0,172.0,False,0.33,Alimentation
+orig_image copy 7.png,AloE VeRA MRCX 1256,1385.5,306.0,False,0.26,Alimentation
+orig_image copy 7.png,SURGELE SALE,1465.0,167.0,False,0.82,Alimentation
+orig_image copy 7.png,2LBS ORION 9 983,1515.0,673.0,False,0.8,Alimentation
+orig_image copy 7.png,Ix BLANC POULET,1531.5,227.0,False,0.83,Alimentation
+orig_image copy 7.png,ALIMENTAIRE 2.2L,1671.0,475.0,False,0.74,Divers/Bazar
+orig_image copy 7.png,BOITE ALIMENTAIRE 2.2L,1748.5,326.0,False,0.71,Divers/Bazar
+orig_image copy 7.png,BROCHETTE DE BOEUF,1905.5,296.0,False,0.65,Alimentation
+orig_image copy 8.png,[cckiaIL de Jus FR,264.0,39.0,False,0.19,Restauration
+orig_image copy 8.png,Grarelon,274.0,40.0,False,0.07,Restauration
+orig_image copy 8.png,paofiterolles CaRA,309.0,39.0,False,0.12,Restauration
+orig_image copy 9.png,Margherita,206.0,424.0,False,1.0,Alimentation
+orig_image copy 9.png,Pton bébé,285.0,428.0,False,0.98,Alimentation
+orig_image copy 9.png,Biscuits vitalité,415.0,337.0,False,0.97,Alimentation
+orig_image copy 9.png,Baguette croustille,443.5,338.0,False,0.86,Alimentation
+orig_image copy 9.png,Tomate grappe,467.5,337.0,False,0.96,Alimentation
+orig_image copy 9.png,Cacahuetes,520.0,336.0,False,0.58,Alimentation
+orig_image copy 9.png,Mache,546.0,336.0,False,0.88,Alimentation
+orig_image copy 9.png,Fromage blanc,574.0,333.0,False,0.82,Alimentation
+orig_image copy 9.png,Conf iture Abr,601.0,333.0,False,0.73,Alimentation
+orig_image copy 9.png,Couches XL,626.5,332.0,False,0.93,Hygiène_et_Beauté
+orig_image copy.png,PAQUET DE SURIMI,35.5,49.0,False,0.9,Alimentation
+orig_image copy.png,BOITE D'OLIUES,67.0,51.0,False,0.97,Alimentation
+orig_image copy.png,SAUCISSON SEC,97.0,52.0,False,0.67,Alimentation
+orig_image copy.png,3 CONSERUES DE Maïs,124.5,27.0,False,0.58,Alimentation
+orig_image copy.png,BOITE DE THON BLANC,151.0,143.0,False,0.64,Alimentation
+orig_image copy.png,SACHET DE MOZZARELLA,182.5,59.0,False,0.82,Alimentation
+orig_image copy.png,8 BâTONNETS DE GLACE,214.5,31.0,False,0.53,Alimentation
+orig_image copy.png,BOUTEILLE DE COLA,245.0,60.0,False,0.71,Boissons
+orig_image copy.png,BOUTEILLE DE LIMONADE,267.0,205.0,False,0.96,Boissons
+orig_image copy.png,PACK DE 6 EAUX GAZEUSES,301.0,62.0,False,0.46,Boissons
+orig_image copy.png,BOUTEILLE DE ROSÉ,332.0,63.0,False,0.76,Boissons
+orig_image copy.png,BOUTEILLE DE PASTIS,361.5,64.0,False,0.83,Boissons
+orig_image copy.png,BOUTEILLE DE SIROP,386.5,211.0,False,0.87,Boissons
