@@ -50,6 +50,7 @@ def generate_fake_data(num_users=5, tickets_per_user=(5, 15)):
                 "nom": fake.last_name(),
                 "ville": fake.city(),
                 "code_postal": fake.postcode(),
+                "budget_fixe": round(random.uniform(1000.0, 4000.0), 2),
                 "abonnement": random.choice(["Gratuit", "Premium"]),
                 "est_admin": False,
                 "cree_le": fake.date_time_between(start_date='-1y', end_date='now')

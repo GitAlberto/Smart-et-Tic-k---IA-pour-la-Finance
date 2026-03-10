@@ -1,0 +1,75 @@
+------- CELL -------
+# Importation des librairies
+import pandas as pd
+import numpy as np
+import torch
+from transformers import AutoTokenizer, AutoModel
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+import joblib
+------- CELL -------
+# --- CONFIGURATION ---
+FICHIER_ANNOTÉ = "echantillon_annote_enrichi.csv"
+NOM_MODELE_SAUVEGARDE = "cerveau_budget.pkl"
+
+print("🚀 Démarrage de l'entraînement de l'IA...")
+
+# 1. Chargement des données
+print(f"📖 Lecture du manuel scolaire ({FICHIER_ANNOTÉ})...")
+try:
+    df = pd.read_csv(FICHIER_ANNOTÉ)
+except FileNotFoundError:
+    print(f"❌ Erreur : Impossible de trouver le fichier {FICHIER_ANNOTÉ}")
+    exit()
+
+# On ne garde QUE les lignes où tu as écrit une catégorie (on ignore le bruit)
+df_propre = df.dropna(subset=['categorie_cible']).copy()
+print(f"✅ {len(df_propre)} produits trouvés et prêts pour l'apprentissage.")
+
+# 2. Chargement de CamemBERT
+print("🧠 Réveil de CamemBERT (cela peut prendre quelques secondes)...")
+tokenizer = AutoTokenizer.from_pretrained("camembert-base")
+camembert = AutoModel.from_pretrained("camembert-base")
+
+# Fonction pour transformer un texte en vecteur mathématique (les fameux "Embeddings")
+def transformer_en_nombres(texte):
+    # On nettoie un peu la ligne avant de l'envoyer à CamemBERT
+    texte = str(texte).strip()
+    inputs = tokenizer(texte, return_tensors="pt", truncation=True, max_length=32)
+    with torch.no_grad(): # Pas besoin de mettre à jour CamemBERT, il est déjà intelligent
+        outputs = camembert(**inputs)
+    # On prend le résumé global de la phrase (le token <s>)
+    vecteur = outputs.last_hidden_state[:, 0, :].squeeze().numpy()
+    return vecteur
+
+# 3. Traduction des textes
+print("🔢 Traduction des produits en données mathématiques...")
+X = np.stack(df_propre['texte_brut'].apply(transformer_en_nombres))
+y = df_propre['categorie_cible']
+
+# 4. Entraînement de l'algorithme (Scikit-Learn)
+print("🎓 Début des révisions...")
+# On garde 20% des données pour lui faire passer un examen à la fin
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
+# On utilise une Régression Logistique (simple, rapide et redoutable)
+cerveau = LogisticRegression(max_iter=1000, class_weight='balanced',C=0.5)
+cerveau.fit(X_train, y_train)
+
+# 5. L'Examen Final
+print("📝 Passage de l'examen final sur les données non apprises...")
+y_pred = cerveau.predict(X_test)
+precision = accuracy_score(y_test, y_pred)
+
+print("-" * 30)
+print(f"🏆 Précision de l'IA : {precision * 100:.2f} %")
+print("-" * 30)
+print("Détail du bulletin de notes :")
+# Zero_division=0 permet de ne pas afficher d'erreur si une catégorie n'est pas présente dans les 20% de test
+print(classification_report(y_test, y_pred, zero_division=0)) 
+
+# 6. Sauvegarde
+print(f"💾 Sauvegarde du cerveau dans '{NOM_MODELE_SAUVEGARDE}'...")
+joblib.dump(cerveau, NOM_MODELE_SAUVEGARDE)
+print("✨ Terminé ! L'IA est prête à analyser n'importe quel ticket de caisse.")

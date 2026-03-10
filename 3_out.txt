@@ -1,0 +1,79 @@
+------- CELL -------
+# Importation des librairies
+import pandas as pd
+import re
+------- CELL -------
+# Importation du dataset
+df = pd.read_csv("textes_bruts_tickets.csv")
+------- CELL -------
+df.shape
+------- CELL -------
+# Affichhage du df
+df.head(50)
+------- CELL -------
+# --- CONFIGURATION ---
+fichier_entree = "textes_bruts_tickets.csv"
+fichier_sortie = "textes_nettoyes_a_annoter.csv"
+
+# --- RÈGLES DE NETTOYAGE ---
+# --- RÈGLES DE NETTOYAGE ---
+def est_une_impurete(texte):
+    texte = str(texte).strip().upper()
+    
+    # 1. Règle de longueur : Trop court
+    if len(texte) < 3:
+        return True
+        
+    # 2. Règle des prix/nombres simples (ex: "3.39", "250")
+    if re.match(r'^\d+([.,]\d+)?$', texte):
+        return True
+        
+    # 3. NOUVEAU : Règle des dates (parfaites ou cassées comme "79/5272025")
+    # Si la ligne ne contient QUE des chiffres, des slashs et des espaces
+    if re.match(r'^[\d/\s]+$', texte) and '/' in texte:
+        return True
+        
+    # 4. Règle des heures (ex: "14:45:04")
+    if re.search(r'\d{2}:\d{2}(:\d{2})?', texte):
+        return True
+        
+    # 5. NOUVEAU : Règle anti codes-barres / numéros de ticket (ex: "45000000100199900")
+    # S'il y a plus de 7 chiffres et aucune lettre, on jette
+    if sum(c.isdigit() for c in texte) > 7 and sum(c.isalpha() for c in texte) == 0:
+        return True
+        
+    # 6. Règle des mots-clés bannis
+    mots_bannis = [
+        "TOTAL", "TVA", "CARTE BANCAIRE", "CB", "MERCI", "VISITE", 
+        "DUPLICATA", "SIRET", "CAISSE", "RENDU", "MONNAIE", "EUR", "TTC", "HT"
+    ]
+    if any(mot in texte for mot in mots_bannis):
+        return True
+        
+    return False
+# --- EXÉCUTION ---
+print(f"Chargement du fichier brut : {fichier_entree}")
+try:
+    df_brut = pd.read_csv(fichier_entree)
+except FileNotFoundError:
+    print(f"Erreur : Le fichier {fichier_entree} n'existe pas.")
+    exit()
+
+taille_initiale = len(df_brut)
+
+# On applique notre fonction de filtrage
+# On garde les lignes où est_une_impurete renvoie False
+df_propre = df_brut[~df_brut['texte_brut'].apply(est_une_impurete)]
+
+# On sauvegarde le résultat
+df_propre.to_csv(fichier_sortie, index=False, encoding='utf-8')
+
+taille_finale = len(df_propre)
+lignes_supprimees = taille_initiale - taille_finale
+
+print("-" * 30)
+print(f"Nettoyage terminé avec succès ! 🧹")
+print(f"Lignes au départ : {taille_initiale}")
+print(f"Lignes supprimées (Impuretés) : {lignes_supprimees}")
+print(f"Lignes conservées (Produits) : {taille_finale}")
+print(f"Le fichier propre est prêt : {fichier_sortie}")

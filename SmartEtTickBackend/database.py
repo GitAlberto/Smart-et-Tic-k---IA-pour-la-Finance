@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-#SQLALCHEMY_DATABASE_URL = "sqlite:///./smart_tick.db"
 Mot_de_passe = "Mot de passe"
 SQLALCHEMY_DATABASE_URL = f"postgresql://postgres:{Mot_de_passe}@localhost:5432/Smart-Et-Tick"
 

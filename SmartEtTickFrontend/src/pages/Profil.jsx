@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useApp } from '../AppContext'
 import { dataApi } from '../services/dataApi'
+import { authApi } from '../services/authApi'
 
 export default function Profil() {
     const { logout, user } = useApp()
@@ -10,6 +11,29 @@ export default function Profil() {
         montant: 0,
         mois: 0
     })
+
+    const [isEditing, setIsEditing] = useState(false)
+    const [editForm, setEditForm] = useState({
+        prenom: '',
+        nom: '',
+        ville: '',
+        code_postal: '',
+        budget_fixe: 1500
+    })
+    const [isSaving, setIsSaving] = useState(false)
+    const [isDeleting, setIsDeleting] = useState(false)
+
+    useEffect(() => {
+        if (user) {
+            setEditForm({
+                prenom: user.prenom || '',
+                nom: user.nom || '',
+                ville: user.ville || '',
+                code_postal: user.code_postal || '',
+                budget_fixe: user.budget_fixe || 1500
+            })
+        }
+    }, [user])
 
     useEffect(() => {
         const fetchLifetime = async () => {
@@ -28,6 +52,35 @@ export default function Profil() {
         }
         fetchLifetime()
     }, [])
+
+    const handleSave = async () => {
+        setIsSaving(true)
+        try {
+            await authApi.updateProfile(editForm)
+            setIsEditing(false)
+            // Refresh to update context user
+            window.location.reload()
+        } catch (err) {
+            console.error("Erreur mise à jour profil:", err)
+            alert("Erreur lors de la mise à jour : " + err.message)
+        } finally {
+            setIsSaving(false)
+        }
+    }
+
+    const handleDeleteAccount = async () => {
+        if (window.confirm("Êtes-vous sûr de vouloir supprimer définitivement votre compte, vos tickets et vos articles ? Cette action est irréversible.")) {
+            setIsDeleting(true)
+            try {
+                await authApi.deleteAccount()
+                logout()
+            } catch (err) {
+                console.error("Erreur suppression compte:", err)
+                alert("Erreur lors de la suppression du compte : " + err.message)
+                setIsDeleting(false)
+            }
+        }
+    }
 
     // Fallbacks si les données sont vides (nouvel utilisateur)
     const prenom = user?.prenom || ""
@@ -70,10 +123,11 @@ export default function Profil() {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <button className="btn btn-ghost" style={{ backgroundColor: 'var(--bg-surface)' }}>
-                        ✏️ Modifier la photo
-                    </button>
+                <div style={{ marginRight: 24 }}>
+                    <div className="sidebar-logo" style={{ margin: 0 }}>
+                        <div className="sidebar-logo-icon">🧾</div>
+                        <div className="sidebar-logo-text">Smart<span>&</span>Tick</div>
+                    </div>
                 </div>
             </div>
 
@@ -82,22 +136,40 @@ export default function Profil() {
                 <div className="card animate-in animate-delay-1">
                     <div className="section-header">
                         <span className="section-title">Informations personnelles</span>
-                        <button className="btn btn-ghost" style={{ padding: '6px 12px', fontSize: 12 }}>Éditer</button>
+                        {!isEditing ? (
+                            <button className="btn btn-ghost" style={{ padding: '6px 12px', fontSize: 12 }} onClick={() => setIsEditing(true)}>Éditer</button>
+                        ) : (
+                            <button className="btn btn-primary" style={{ padding: '6px 12px', fontSize: 12 }} disabled={isSaving} onClick={handleSave}>
+                                {isSaving ? "Sauvegarde..." : "Sauvegarder"} <span className="bdd-tag" style={{ background: 'transparent', border: 'none' }}>api</span>
+                            </button>
+                        )}
                     </div>
 
                     <div className="form-grid" style={{ marginBottom: 16 }}>
                         <div className="form-group">
                             <label className="form-label">Prénom</label>
                             <div style={{ position: 'relative' }}>
-                                <input type="text" className="form-input" value={prenom} readOnly />
-                                <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>
+                                <input
+                                    type="text"
+                                    className="form-input"
+                                    value={isEditing ? editForm.prenom : prenom}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => setEditForm({ ...editForm, prenom: e.target.value })}
+                                />
+                                {!isEditing && <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>}
                             </div>
                         </div>
                         <div className="form-group">
                             <label className="form-label">Nom</label>
                             <div style={{ position: 'relative' }}>
-                                <input type="text" className="form-input" value={nom} readOnly />
-                                <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>
+                                <input
+                                    type="text"
+                                    className="form-input"
+                                    value={isEditing ? editForm.nom : nom}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => setEditForm({ ...editForm, nom: e.target.value })}
+                                />
+                                {!isEditing && <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>}
                             </div>
                         </div>
                     </div>
@@ -114,17 +186,44 @@ export default function Profil() {
                         <div className="form-group">
                             <label className="form-label">Ville</label>
                             <div style={{ position: 'relative' }}>
-                                <input type="text" className="form-input" value={user?.ville || ""} readOnly />
-                                <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>
+                                <input
+                                    type="text"
+                                    className="form-input"
+                                    value={isEditing ? editForm.ville : (user?.ville || "")}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => setEditForm({ ...editForm, ville: e.target.value })}
+                                />
+                                {!isEditing && <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>}
                             </div>
                         </div>
                         <div className="form-group">
                             <label className="form-label">Code postal</label>
                             <div style={{ position: 'relative' }}>
-                                <input type="text" className="form-input" value={user?.code_postal || ""} readOnly />
-                                <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>
+                                <input
+                                    type="text"
+                                    className="form-input"
+                                    value={isEditing ? editForm.code_postal : (user?.code_postal || "")}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => setEditForm({ ...editForm, code_postal: e.target.value })}
+                                />
+                                {!isEditing && <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>}
                             </div>
                         </div>
+                    </div>
+
+                    <div className="form-group" style={{ marginBottom: 16, marginTop: 16 }}>
+                        <label className="form-label">Budget Fixe Mensuel (€)</label>
+                        <div style={{ position: 'relative' }}>
+                            <input
+                                type="number"
+                                className="form-input"
+                                value={isEditing ? editForm.budget_fixe : (user?.budget_fixe || 1500)}
+                                readOnly={!isEditing}
+                                onChange={(e) => setEditForm({ ...editForm, budget_fixe: parseFloat(e.target.value) || 0 })}
+                            />
+                            {!isEditing && <span className="bdd-tag" style={{ position: 'absolute', right: 10, top: 12 }}>api</span>}
+                        </div>
+                        <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>Définit votre limite pour la KPI "Économies" du Dashboard.</div>
                     </div>
                 </div>
 
@@ -174,6 +273,6 @@ export default function Profil() {
                 </button>
             </div>
 
-        </div>
+        </div >
     )
 }

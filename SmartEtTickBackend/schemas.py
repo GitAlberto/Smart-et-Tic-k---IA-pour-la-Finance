@@ -1,5 +1,14 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional
+from typing import Optional, List
+from uuid import UUID
+from datetime import datetime, date
+
+class UserUpdate(BaseModel):
+    prenom: Optional[str] = None
+    nom: Optional[str] = None
+    ville: Optional[str] = None
+    code_postal: Optional[str] = None
+    budget_fixe: Optional[float] = None
 
 class UserCreate(BaseModel):
     pseudo: str
@@ -14,9 +23,6 @@ class Token(BaseModel):
     access_token: str
     token_type: str
 
-from uuid import UUID
-from datetime import datetime
-
 class UserResponse(BaseModel):
     id: UUID
     pseudo: str
@@ -25,6 +31,7 @@ class UserResponse(BaseModel):
     nom: Optional[str] = None
     ville: Optional[str] = None
     code_postal: Optional[str] = None
+    budget_fixe: Optional[float] = None
     abonnement: Optional[str] = "Gratuit"
     est_admin: Optional[bool] = False
     cree_le: Optional[datetime] = None
@@ -38,9 +45,6 @@ class ForgotPasswordRequest(BaseModel):
 class ResetPasswordRequest(BaseModel):
     token: str
     new_password: str
-
-from datetime import date
-from typing import List
 
 class CategorySchema(BaseModel):
     id: UUID
@@ -61,6 +65,18 @@ class ArticleSchema(BaseModel):
     class Config:
         from_attributes = True
 
+class TicketCreate(BaseModel):
+    nom_marchand: str
+    montant_total: float
+    date_achat: date
+    categorie_id: Optional[UUID] = None
+
+class TicketUpdate(BaseModel):
+    nom_marchand: Optional[str] = None
+    montant_total: Optional[float] = None
+    date_achat: Optional[date] = None
+    categorie_id: Optional[UUID] = None
+
 class TicketSchema(BaseModel):
     id: UUID
     nom_marchand: str
@@ -80,4 +96,7 @@ class DashboardStats(BaseModel):
     trend_depenses: float = 0.0
     trend_tickets: float = 0.0
     trend_categories: float = 0.0
-
+    budget_fixe: float = 0.0
+    depassement_budget: float = 0.0
+    pct_depassement: float = 0.0
+    economie_comparaison: float = 0.0

@@ -2,6 +2,15 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- =========================================
+-- NETTOYAGE DES ANCIENNES TABLES
+-- =========================================
+DROP TABLE IF EXISTS articles_ticket CASCADE;
+DROP TABLE IF EXISTS tickets CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS jetons_revoques CASCADE;
+DROP TABLE IF EXISTS utilisateurs CASCADE;
+
+-- =========================================
 -- TABLE : utilisateurs (Comptes et Profils)
 -- =========================================
 CREATE TABLE utilisateurs (
@@ -15,6 +24,8 @@ CREATE TABLE utilisateurs (
     nom VARCHAR(100),
     ville VARCHAR(100),
     code_postal VARCHAR(20),
+    budget_fixe NUMERIC(10, 2) DEFAULT 1500.00,
+    
     
     -- Abonnement & rôle
     abonnement VARCHAR(50) DEFAULT 'Gratuit', -- ex: 'Gratuit', 'Premium'
