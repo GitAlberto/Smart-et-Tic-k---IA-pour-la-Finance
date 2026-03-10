@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime, Boolean, text
+from sqlalchemy import Column, String, DateTime, Boolean, text, Numeric
 from sqlalchemy.dialects.postgresql import UUID
 from database import Base
 import uuid
@@ -14,6 +14,7 @@ class User(Base):
     nom = Column(String(100))
     ville = Column(String(100))
     code_postal = Column(String(20))
+    budget_fixe = Column(Numeric(10, 2), default=1500.0)
     abonnement = Column(String(50), default="Gratuit")
     est_admin = Column(Boolean, default=False)
     cree_le = Column(DateTime(timezone=True), server_default=text("CURRENT_TIMESTAMP"))
@@ -38,7 +39,7 @@ class Category(Base):
     icone = Column(String(50))
     cree_le = Column(DateTime(timezone=True), server_default=text("CURRENT_TIMESTAMP"))
 
-from sqlalchemy import Numeric, Date, ForeignKey
+from sqlalchemy import Date, ForeignKey
 from sqlalchemy.orm import relationship
 
 class Ticket(Base):

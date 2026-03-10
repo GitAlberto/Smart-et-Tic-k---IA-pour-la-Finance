@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useApp } from '../AppContext'
 import { dataApi } from '../services/dataApi'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, PieChart, Pie, Cell } from 'recharts'
 
 // Données mockées pour les graphiques (en attendant des endpoints plus avancés)
 const MOIS = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun']
@@ -40,98 +41,144 @@ function KpiCard({ label, value, icon, trend, trendLabel, accentColor, delay }) 
     )
 }
 
-function BarChart({ monthlyTotals }) {
-    if (!monthlyTotals) return <div>Chargement...</div>
-    const entries = Object.entries(monthlyTotals)
-    if (entries.length === 0) return <div>Pas de données</div>
+function ExpensesChart({ monthlyTotals, budget }) {
+    if (!monthlyTotals) return <div style={{ minHeight: 250, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
 
-    // Pour simplifier l'exemple, on met ici tout en dépenses
-    const MAX_VAL = Math.max(...Object.values(monthlyTotals), 100) * 1.2
+    // Convert object { "2026-02": 1500 } to array of { month: "02", depense: 1500 }
+    const data = Object.entries(monthlyTotals).map(([m, v]) => ({
+        month: m.split('-')[1],
+        depense: v
+    }))
+
+    if (data.length === 0) return <div style={{ minHeight: 250, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>Pas de données suffisantes.</div>
 
     return (
-        <div className="chart-container">
-            <div className="chart-bars">
-                {entries.map(([m, v]) => {
-                    const monthLabel = m.split('-')[1] // Affiche juste le mois "03"
-                    return (
-                        <div key={m} className="chart-bar-group">
-                            <div style={{ display: 'flex', gap: 4, alignItems: 'flex-end', flex: 1 }}>
-                                <div
-                                    className="chart-bar"
-                                    style={{
-                                        height: `${(v / MAX_VAL) * 85}%`,
-                                        background: 'linear-gradient(180deg, #f05252, #c03030)',
-                                        opacity: 0.7,
-                                        flex: 1,
-                                    }}
-                                    title={`Dépenses ${monthLabel}: ${v} €`}
-                                />
-                            </div>
-                            <div className="chart-bar-label">{monthLabel}</div>
-                        </div>
-                    )
-                })}
-            </div>
-            {/* Légende */}
-            <div style={{ display: 'flex', gap: 20, marginTop: 12, justifyContent: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--text-secondary)' }}>
-                    <div style={{ width: 10, height: 10, borderRadius: 2, background: '#f05252' }} />
-                    Dépenses
-                </div>
-            </div>
+        <div className="chart-container" style={{ minHeight: '260px', width: '100%', padding: '10px 0' }}>
+            <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={data} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border-accent)" opacity={0.5} />
+                    <XAxis
+                        dataKey="month"
+                        stroke="var(--text-muted)"
+                        fontSize={12}
+                        tickLine={false}
+                        axisLine={false}
+                        dy={10}
+                    />
+                    <YAxis
+                        stroke="var(--text-muted)"
+                        fontSize={12}
+                        tickLine={false}
+                        axisLine={false}
+                        tickFormatter={(value) => `${value}€`}
+                    />
+                    <Tooltip
+                        cursor={{ fill: 'var(--bg-hover)', opacity: 0.4 }}
+                        contentStyle={{
+                            backgroundColor: 'var(--bg-popover)',
+                            border: '1px solid var(--border-accent)',
+                            borderRadius: '8px',
+                            color: 'var(--text-primary)'
+                        }}
+                        itemStyle={{ color: 'var(--red)' }}
+                        formatter={(value) => [`${value} €`, 'Dépenses']}
+                        labelFormatter={(label) => `Mois : ${label}`}
+                    />
+
+                    {/* Fixed Budget Reference Line */}
+                    {budget > 0 && (
+                        <ReferenceLine
+                            y={budget}
+                            stroke="var(--gold)"
+                            strokeDasharray="4 4"
+                            label={{
+                                position: 'insideTopLeft',
+                                value: 'Objectif',
+                                fill: 'var(--gold)',
+                                fontSize: 11,
+                                dy: -10
+                            }}
+                        />
+                    )}
+
+                    {/* Rounded Bars matching the design system */}
+                    <Bar
+                        dataKey="depense"
+                        fill="var(--red)"
+                        radius={[6, 6, 0, 0]}
+                        barSize={40}
+                    />
+                </BarChart>
+            </ResponsiveContainer>
         </div>
     )
 }
 
 // Mini donut SVG
 function DonutChart({ categories, totalDepenses }) {
-    if (!categories || categories.length === 0) return <div>Pas de données de catégories</div>
-
-    const r = 54, cx = 70, cy = 70, strokeW = 18
-    const circum = 2 * Math.PI * r
-    let offset = 0
+    if (!categories || categories.length === 0) return <div style={{ minHeight: 250, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>Pas de données de catégories</div>
 
     // Garder seulement le top 5
     const topCats = categories.slice(0, 5)
 
-    return (
-        <div className="donut-container">
-            <svg className="donut-svg" viewBox="0 0 140 140">
-                <circle cx={cx} cy={cy} r={r} fill="none" stroke="var(--bg-hover)" strokeWidth={strokeW} />
-                {topCats.map((d, i) => {
-                    const dash = (d.pct / 100) * circum
-                    const gap = circum - dash
-                    const seg = (
-                        <circle
-                            key={i}
-                            cx={cx} cy={cy} r={r}
-                            fill="none"
-                            stroke={d.color || '#4f8ef7'}
-                            strokeWidth={strokeW}
-                            strokeDasharray={`${dash} ${gap}`}
-                            strokeDashoffset={-offset}
-                            strokeLinecap="butt"
-                            style={{ transform: 'rotate(-90deg)', transformOrigin: `${cx}px ${cy}px`, transition: 'all 1s ease' }}
-                        />
-                    )
-                    offset += dash
-                    return seg
-                })}
-                <text x={cx} y={cy - 4} textAnchor="middle" fill="var(--text-primary)" fontSize="16" fontWeight="700" fontFamily="Space Grotesk">
+    // Calculer un Custom Label personnalisé pour le centre du Donut
+    const renderCenterLabel = () => {
+        return (
+            <>
+                <text x="50%" y="45%" textAnchor="middle" fill="var(--text-primary)" fontSize="20" fontWeight="700" fontFamily="Space Grotesk">
                     {Number(totalDepenses).toFixed(0)}€
                 </text>
-                <text x={cx} y={cy + 14} textAnchor="middle" fill="var(--text-muted)" fontSize="10">
+                <text x="50%" y="58%" textAnchor="middle" fill="var(--text-muted)" fontSize="12">
                     période
                 </text>
-            </svg>
-            <div className="donut-legend">
+            </>
+        )
+    }
+
+    return (
+        <div style={{ display: 'flex', gap: '24px', alignItems: 'center', minHeight: '260px', padding: '10px 0' }}>
+            <div style={{ width: '160px', height: '160px', position: 'relative' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                        <Pie
+                            data={topCats}
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={55}
+                            outerRadius={75}
+                            paddingAngle={2}
+                            dataKey="pct"   // Use the percentage value to size the slices
+                            stroke="none"
+                            cornerRadius={4}
+                        >
+                            {topCats.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={entry.color || '#4f8ef7'} />
+                            ))}
+                        </Pie>
+                        <Tooltip
+                            contentStyle={{
+                                backgroundColor: 'var(--bg-popover)',
+                                border: '1px solid var(--border-accent)',
+                                borderRadius: '8px',
+                                color: 'var(--text-primary)'
+                            }}
+                            itemStyle={{ color: 'var(--text-primary)', fontWeight: '600' }}
+                            formatter={(value, name, props) => [`${value}% (${Number((value / 100) * totalDepenses).toFixed(0)}€)`, props.payload.name]}
+                        />
+                        {/* Custom SVG elements can be layered inside Recharts via regular SVG tags */}
+                        {renderCenterLabel()}
+                    </PieChart>
+                </ResponsiveContainer>
+            </div>
+
+            <div className="donut-legend" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {topCats.map((d) => (
-                    <div key={d.name} className="legend-item">
-                        <div className="legend-dot" style={{ background: d.color || '#4f8ef7' }} />
-                        <div className="legend-info">
-                            <div className="legend-label">{d.name}</div>
+                    <div key={d.name} className="legend-item" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <div className="legend-dot" style={{ background: d.color || '#4f8ef7', width: '10px', height: '10px', borderRadius: '50%' }} />
+                            <div className="legend-label" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{d.name}</div>
                         </div>
-                        <div className="legend-value">{d.pct}%</div>
+                        <div className="legend-value" style={{ fontWeight: '600', fontFamily: 'var(--font-display)' }}>{d.pct}%</div>
                     </div>
                 ))}
             </div>
@@ -181,20 +228,52 @@ export default function Dashboard() {
         <div>
             {/* ── KPI Row ── */}
             <div className="grid-4" style={{ marginBottom: 24 }}>
-                <KpiCard label={<>Dépenses ({period}m) <span className="bdd-tag">api</span></>} value={`${Number(stats.total_depenses).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`} icon="📉" trend={stats.trend_depenses} trendLabel="vs prcd." accentColor="var(--red)" delay={1} />
-                <KpiCard label={<>Tickets scannés <span className="bdd-tag">api</span></>} value={stats.total_tickets} icon="🧾" trend={stats.trend_tickets} trendLabel="vs prcd." accentColor="var(--green)" delay={2} />
-                <KpiCard label={<>Économies réelles <span className="bdd-tag">api</span></>} value={`${(Number(stats.total_depenses) * 0.15).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €`} icon="💰" trend={stats.trend_depenses} trendLabel="vs prcd." accentColor="var(--gold)" delay={3} />
-                <KpiCard label={<>Catégories actives <span className="bdd-tag">api</span></>} value={stats.categories_actives} icon="◑" trend={stats.trend_categories} trendLabel="vs prcd." accentColor="var(--blue)" delay={4} />
+                <KpiCard
+                    label={<>Dépenses ({period}m) <span className="bdd-tag">api</span></>}
+                    value={`${Number(stats.total_depenses).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`}
+                    icon="📉"
+                    trend={stats.trend_depenses}
+                    trendLabel="vs prcd."
+                    accentColor="var(--red)"
+                    delay={1}
+                />
+                <KpiCard
+                    label={<>Comparaison (Mois préc.) <span className="bdd-tag">api</span></>}
+                    value={`${stats.economie_comparaison > 0 ? '+' : ''}${Number(stats.economie_comparaison).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €`}
+                    icon="💰"
+                    trend={stats.economie_comparaison > 0 ? 1 : -1}
+                    trendLabel={stats.economie_comparaison > 0 ? "d'économisé" : "de perdu"}
+                    accentColor={stats.economie_comparaison > 0 ? "var(--green)" : "var(--red)"}
+                    delay={2}
+                />
+                <KpiCard
+                    label={<>Objectif Budget Fixe <span className="bdd-tag">api</span></>}
+                    value={`${Number(stats.budget_fixe).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €`}
+                    icon="🎯"
+                    trend={stats.depassement_budget > 0 ? -(stats.pct_depassement) : 100 - (stats.total_depenses / stats.budget_fixe * 100)}
+                    trendLabel={stats.depassement_budget > 0 ? "de dépassement" : "de marge"}
+                    accentColor={stats.depassement_budget > 0 ? "var(--danger)" : "var(--gold)"}
+                    delay={3}
+                />
+                <KpiCard
+                    label={<>Catégories actives <span className="bdd-tag">api</span></>}
+                    value={stats.categories_actives}
+                    icon="◑"
+                    trend={stats.trend_categories}
+                    trendLabel="vs prcd."
+                    accentColor="var(--blue)"
+                    delay={4}
+                />
             </div>
 
             {/* ── Charts Row ── */}
             <div className="grid-2" style={{ marginBottom: 24 }}>
                 <div className="card animate-in animate-delay-1">
                     <div className="section-header">
-                        <span className="section-title">Revenus & Dépenses <span className="bdd-tag">api</span></span>
+                        <span className="section-title">Dépenses vs Budget <span className="bdd-tag">api</span></span>
                         <span className="badge badge-green">{period} mois</span>
                     </div>
-                    {analytics && <BarChart monthlyTotals={analytics.monthly_totals} />}
+                    {analytics && <ExpensesChart monthlyTotals={analytics.monthly_totals} budget={stats.budget_fixe} />}
                 </div>
                 <div className="card animate-in animate-delay-2">
                     <div className="section-header">

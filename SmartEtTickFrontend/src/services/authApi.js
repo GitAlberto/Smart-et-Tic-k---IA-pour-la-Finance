@@ -88,5 +88,18 @@ export const authApi = {
         return authFetch('/me', {
             method: 'GET'
         })
+    },
+
+    updateProfile: async (profileData) => {
+        return authFetch('/me', {
+            method: 'PUT',
+            body: JSON.stringify(profileData)
+        })
+    },
+
+    deleteAccount: async () => {
+        return authFetch('/me', {
+            method: 'DELETE'
+        })
     }
 }

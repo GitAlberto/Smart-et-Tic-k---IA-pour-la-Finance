@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AppProvider, useApp } from './AppContext'
 import './index.css'
 
@@ -12,6 +12,7 @@ import Parametres from './pages/Parametres'
 import Connexion from './pages/Authentification/Connexion'
 import Inscription from './pages/Authentification/Inscription'
 import MotDePasseOublie from './pages/Authentification/MotDePasseOublie'
+import ReinitialiserMotDePasse from './pages/Authentification/ReinitialiserMotDePasse'
 
 const NAV_ITEMS = [
   { id: 'dashboard', icon: '▦', label: 'Tableau de bord', badge: null },
@@ -115,10 +116,6 @@ function MainLayout() {
             <div className="topbar-subtitle">{info.subtitle}</div>
           </div>
           <div className="topbar-actions">
-            <div className="search-bar">
-              <span>🔍</span>
-              <span>Rechercher… <span className="bdd-tag">api</span></span>
-            </div>
             <div className="icon-btn">
               🔔
               <span className="notification-dot" />
@@ -139,10 +136,21 @@ function AuthLayout() {
   const [authPage, setAuthPage] = useState('login')
   const { login } = useApp()
 
+  // Extract 'token' from URL query params (e.g. ?token=...)
+  const params = new URLSearchParams(window.location.search)
+  const resetToken = params.get('token')
+
+  useEffect(() => {
+    if (resetToken && authPage !== 'reset-password') {
+      setAuthPage('reset-password')
+    }
+  }, [resetToken])
+
   switch (authPage) {
     case 'login': return <Connexion onLogin={login} onNavigate={setAuthPage} />
     case 'register': return <Inscription onRegister={login} onNavigate={setAuthPage} />
     case 'forgot-password': return <MotDePasseOublie onNavigate={setAuthPage} />
+    case 'reset-password': return <ReinitialiserMotDePasse onNavigate={setAuthPage} token={resetToken} />
     default: return <Connexion onLogin={login} onNavigate={setAuthPage} />
   }
 }

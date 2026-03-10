@@ -1,34 +1,30 @@
 from datetime import datetime, timedelta
-from typing import Optional
 from jose import jwt
 from passlib.context import CryptContext
 
-# Configuration JWT
-SECRET_KEY = "votre_cle_super_secrete_a_changer_en_production" # TODO: Mettre dans un .env
+# Pour un vrai projet en prod, il faut stocker ça dans un .env !
+SECRET_KEY = "une_cle_secrete_tres_complexe_et_longue_123456"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7 # 7 jours
-RESET_TOKEN_EXPIRE_MINUTES = 15 # 15 minutes pour reset password
+RESET_TOKEN_EXPIRE_MINUTES = 15 # Seulement 15 minutes pour réinitialiser
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-def verify_password(plain_password: str, hashed_password: str) -> bool:
+def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
-def get_password_hash(password: str) -> str:
+def get_password_hash(password):
     return pwd_context.hash(password)
 
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+def create_access_token(data: dict):
     to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.utcnow() + expires_delta
-    else:
-        expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire})
+    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire, "type": "access"})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-def create_reset_token(email: str) -> str:
+def create_reset_token(email: str):
+    to_encode = {"sub": email}
     expire = datetime.utcnow() + timedelta(minutes=RESET_TOKEN_EXPIRE_MINUTES)
-    to_encode = {"sub": email, "type": "reset", "exp": expire}
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+    to_encode.update({"exp": expire, "type": "reset"})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
