@@ -192,7 +192,13 @@ export default function Dashboard() {
     const [stats, setStats] = useState({
         total_depenses: 0,
         total_tickets: 0,
-        categories_actives: 0
+        categories_actives: 0,
+        budget_fixe: 0,
+        budget_restant: 0,
+        pct_budget_restant: 0,
+        projection_fin_mois: 0,
+        pct_marge_projection: 0,
+        pct_depassement: 0,
     })
     const [analytics, setAnalytics] = useState(null)
     const [recentTickets, setRecentTickets] = useState([])
@@ -238,21 +244,21 @@ export default function Dashboard() {
                     delay={1}
                 />
                 <KpiCard
-                    label={<>Comparaison (Mois préc.) <span className="bdd-tag">api</span></>}
-                    value={`${stats.economie_comparaison > 0 ? '+' : ''}${Number(stats.economie_comparaison).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €`}
+                    label={<>Budget restant ({period}m) <span className="bdd-tag">api</span></>}
+                    value={`${Number(stats.budget_restant).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €`}
                     icon="💰"
-                    trend={stats.economie_comparaison > 0 ? 1 : -1}
-                    trendLabel={stats.economie_comparaison > 0 ? "d'économisé" : "de perdu"}
-                    accentColor={stats.economie_comparaison > 0 ? "var(--green)" : "var(--red)"}
+                    trend={stats.budget_restant >= 0 ? stats.pct_budget_restant : -(stats.pct_depassement)}
+                    trendLabel={stats.budget_restant >= 0 ? "du budget dispo." : "de dépassement"}
+                    accentColor={stats.budget_restant >= 0 ? "var(--green)" : "var(--red)"}
                     delay={2}
                 />
                 <KpiCard
-                    label={<>Objectif Budget Fixe <span className="bdd-tag">api</span></>}
-                    value={`${Number(stats.budget_fixe).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €`}
-                    icon="🎯"
-                    trend={stats.depassement_budget > 0 ? -(stats.pct_depassement) : 100 - (stats.total_depenses / stats.budget_fixe * 100)}
-                    trendLabel={stats.depassement_budget > 0 ? "de dépassement" : "de marge"}
-                    accentColor={stats.depassement_budget > 0 ? "var(--danger)" : "var(--gold)"}
+                    label={<>Projection fin du mois actuel <span className="bdd-tag">api</span></>}
+                    value={`${Number(stats.projection_fin_mois).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €`}
+                    icon="📆"
+                    trend={stats.pct_marge_projection}
+                    trendLabel={stats.pct_marge_projection >= 0 ? "de marge proj." : "de dépassement proj."}
+                    accentColor={stats.pct_marge_projection >= 0 ? "var(--gold)" : "var(--danger)"}
                     delay={3}
                 />
                 <KpiCard

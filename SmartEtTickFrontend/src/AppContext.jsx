@@ -1,22 +1,22 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { authApi } from './services/authApi'
 
 const AppContext = createContext()
 
 export function AppProvider({ children }) {
-    // Theme: 'dark' or 'light'
     const [theme, setTheme] = useState('dark')
-
-    // Période d'affichage: 1, 2, 3, 6 (mois)
     const [period, setPeriod] = useState(1)
-
-    // Auth & User Profile
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [isAuthLoading, setIsAuthLoading] = useState(true)
     const [user, setUser] = useState(null)
 
-    // Vérification du token au chargement
     useEffect(() => {
+        const isTemporaryBackendIssue = (error) => {
+            const message = error?.message || ''
+            return message.includes('temps à répondre')
+                || message.includes('Failed to fetch')
+        }
+
         const checkAuth = async () => {
             const token = localStorage.getItem('token')
             if (token) {
@@ -24,25 +24,28 @@ export function AppProvider({ children }) {
                     const userData = await authApi.getMe()
                     setUser(userData)
                     setIsAuthenticated(true)
-                } catch (err) {
-                    console.error("Token invalide ou expiré", err)
-                    localStorage.removeItem('token')
+                } catch (error) {
+                    // Keep the token when the backend is only slow or temporarily down.
+                    console.error('Impossible de verifier la session', error)
+                    if (!isTemporaryBackendIssue(error)) {
+                        localStorage.removeItem('token')
+                    }
                     setIsAuthenticated(false)
                     setUser(null)
                 }
             }
             setIsAuthLoading(false)
         }
+
         checkAuth()
     }, [])
 
-    // Appliquer le thème sur <html>
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme)
     }, [theme])
 
     const toggleTheme = () => {
-        setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+        setTheme((previous) => (previous === 'dark' ? 'light' : 'dark'))
     }
 
     const login = async () => {
@@ -50,8 +53,8 @@ export function AppProvider({ children }) {
             const userData = await authApi.getMe()
             setUser(userData)
             setIsAuthenticated(true)
-        } catch (e) {
-            console.error("Erreur post-login User Fetch", e)
+        } catch (error) {
+            console.error('Erreur post-login User Fetch', error)
         }
     }
 
@@ -62,12 +65,21 @@ export function AppProvider({ children }) {
     }
 
     return (
-        <AppContext.Provider value={{
-            theme, setTheme, toggleTheme,
-            period, setPeriod,
-            isAuthenticated, login, logout, isAuthLoading,
-            user, setUser
-        }}>
+        <AppContext.Provider
+            value={{
+                theme,
+                setTheme,
+                toggleTheme,
+                period,
+                setPeriod,
+                isAuthenticated,
+                login,
+                logout,
+                isAuthLoading,
+                user,
+                setUser,
+            }}
+        >
             {children}
         </AppContext.Provider>
     )

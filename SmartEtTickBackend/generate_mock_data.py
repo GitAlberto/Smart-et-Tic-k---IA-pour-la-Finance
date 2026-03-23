@@ -20,6 +20,7 @@ Utilisateurs = metadata.tables['utilisateurs']
 Categories = metadata.tables['categories']
 Tickets = metadata.tables['tickets']
 Articles = metadata.tables['articles_ticket']
+ticket_columns = set(Tickets.c.keys())
 
 def generate_fake_data(num_users=5, tickets_per_user=(5, 15)):
     print(f"-> Generation de fausses donnees...")
@@ -104,6 +105,9 @@ def generate_fake_data(num_users=5, tickets_per_user=(5, 15)):
                     "confiance_ocr": round(random.uniform(70.0, 99.9), 2)
                 }
                 
+                if "est_exceptionnel" in ticket_columns:
+                    ticket_data["est_exceptionnel"] = random.random() < 0.12
+
                 db.execute(Tickets.insert().values(**ticket_data))
                 
                 # Insert Items
