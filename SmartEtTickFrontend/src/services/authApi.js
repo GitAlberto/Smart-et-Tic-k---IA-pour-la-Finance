@@ -1,4 +1,24 @@
 const BASE_URL = 'http://localhost:8000/auth'
+const DEFAULT_TIMEOUT_MS = 6000
+
+const fetchWithTimeout = async (url, options = {}, timeoutMs = DEFAULT_TIMEOUT_MS) => {
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
+
+    try {
+        return await fetch(url, {
+            ...options,
+            signal: controller.signal,
+        })
+    } catch (error) {
+        if (error.name === 'AbortError') {
+            throw new Error('Le serveur met trop de temps à répondre.')
+        }
+        throw error
+    } finally {
+        clearTimeout(timeoutId)
+    }
+}
 
 /**
  * Helper component for authenticated fetch
@@ -14,7 +34,7 @@ const authFetch = async (url, options = {}) => {
         headers['Authorization'] = `Bearer ${token}`
     }
 
-    const response = await fetch(`${BASE_URL}${url}`, {
+    const response = await fetchWithTimeout(`${BASE_URL}${url}`, {
         ...options,
         headers
     })

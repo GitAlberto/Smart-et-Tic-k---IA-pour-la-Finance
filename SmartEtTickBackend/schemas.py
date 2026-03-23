@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional, List
+from typing import Optional, List, Literal
 from uuid import UUID
 from datetime import datetime, date
 
@@ -65,17 +65,31 @@ class ArticleSchema(BaseModel):
     class Config:
         from_attributes = True
 
+
+class ArticleCreate(BaseModel):
+    nom: str
+    prix: float
+    quantite: float = 1.0
+    categorie_id: Optional[UUID] = None
+
 class TicketCreate(BaseModel):
     nom_marchand: str
-    montant_total: float
+    montant_total: Optional[float] = None
     date_achat: date
     categorie_id: Optional[UUID] = None
+    est_exceptionnel: bool = False
+    source_saisie: Literal["manuel", "scan"] = "manuel"
+    confiance_ocr: Optional[float] = None
+    texte_brut_extrait: Optional[str] = None
+    articles: List[ArticleCreate] = []
 
 class TicketUpdate(BaseModel):
     nom_marchand: Optional[str] = None
     montant_total: Optional[float] = None
     date_achat: Optional[date] = None
     categorie_id: Optional[UUID] = None
+    est_exceptionnel: Optional[bool] = None
+    texte_brut_extrait: Optional[str] = None
 
 class TicketSchema(BaseModel):
     id: UUID
@@ -83,6 +97,10 @@ class TicketSchema(BaseModel):
     montant_total: float
     date_achat: date
     statut: str
+    source_saisie: str
+    est_exceptionnel: bool = False
+    confiance_ocr: Optional[float] = None
+    texte_brut_extrait: Optional[str] = None
     categorie: Optional[CategorySchema] = None
     articles: List[ArticleSchema] = []
 
@@ -97,6 +115,9 @@ class DashboardStats(BaseModel):
     trend_tickets: float = 0.0
     trend_categories: float = 0.0
     budget_fixe: float = 0.0
+    budget_restant: float = 0.0
+    pct_budget_restant: float = 0.0
+    projection_fin_mois: float = 0.0
+    pct_marge_projection: float = 0.0
     depassement_budget: float = 0.0
     pct_depassement: float = 0.0
-    economie_comparaison: float = 0.0

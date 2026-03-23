@@ -16,14 +16,14 @@ import ReinitialiserMotDePasse from './pages/Authentification/ReinitialiserMotDe
 
 const NAV_ITEMS = [
   { id: 'dashboard', icon: '▦', label: 'Tableau de bord', badge: null },
-  { id: 'scanner', icon: '⊙', label: 'Scanner ticket', badge: 'IA' },
+  { id: 'scanner', icon: '⊙', label: 'Ajouter ticket', badge: 'IA' },
   { id: 'historique', icon: '≡', label: 'Historique', badge: null },
   { id: 'analytique', icon: '◑', label: 'Analytique', badge: null },
 ]
 
 const PAGE_TITLES = {
   dashboard: { title: 'Tableau de bord', subtitle: 'Vue d\'ensemble de vos finances' },
-  scanner: { title: 'Scanner un ticket', subtitle: 'Analyse automatique par IA' },
+  scanner: { title: 'Ajouter un ticket', subtitle: 'Scan OCR ou saisie manuelle' },
   historique: { title: 'Historique', subtitle: 'Tous vos tickets analysés' },
   analytique: { title: 'Analytique', subtitle: 'Répartition de vos dépenses' },
   profil: { title: 'Mon Profil', subtitle: 'Informations personnelles et abonnement' },
@@ -176,4 +176,3 @@ function AppRouter() {
 
   return isAuthenticated ? <MainLayout /> : <AuthLayout />
 }
-

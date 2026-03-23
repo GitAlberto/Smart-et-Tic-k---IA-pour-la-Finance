@@ -52,6 +52,7 @@ class Ticket(Base):
     montant_total = Column(Numeric(10, 2), nullable=False)
     date_achat = Column(Date, nullable=False)
     categorie_id = Column(UUID(as_uuid=True), ForeignKey("categories.id", ondelete="SET NULL"))
+    est_exceptionnel = Column(Boolean, default=False, server_default=text("FALSE"), nullable=False)
     statut = Column(String(50), default="en attente")
     
     confiance_ocr = Column(Numeric(5, 2))
@@ -64,6 +65,14 @@ class Ticket(Base):
     # Relationships
     categorie = relationship("Category")
     articles = relationship("Article", back_populates="ticket", cascade="all, delete")
+
+    @property
+    def source_saisie(self):
+        """
+        Infer ticket origin without changing the database schema.
+        Manual tickets do not have an OCR confidence score, while scanned ones do.
+        """
+        return "scan" if self.confiance_ocr is not None else "manuel"
 
 class Article(Base):
     __tablename__ = "articles_ticket"

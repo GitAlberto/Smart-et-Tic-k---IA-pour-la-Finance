@@ -80,6 +80,7 @@ CREATE TABLE tickets (
     
     -- Catégorie globale du ticket (soit attribuée par l'IA, soit modifiée par l'utilisateur)
     categorie_id UUID REFERENCES categories(id) ON DELETE SET NULL,
+    est_exceptionnel BOOLEAN DEFAULT FALSE,
     
     -- Statut du traitement ("validé", "en attente", "erreur")
     statut VARCHAR(50) DEFAULT 'en attente',
