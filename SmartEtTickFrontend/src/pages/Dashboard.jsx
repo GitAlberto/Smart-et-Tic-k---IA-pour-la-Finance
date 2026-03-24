@@ -18,7 +18,12 @@ const CAT_COLORS = {
     Boissons: '#3ac8d9',
 }
 
-function KpiCard({ label, value, icon, trend, trendLabel, accentColor, delay }) {
+function KpiCard({ label, value, icon, trend, trendLabel, accentColor, delay, trendTone, valueColor }) {
+    const trendClass =
+        trendTone
+        || (trend > 0 ? 'trend-up' : trend < 0 ? 'trend-down' : 'trend-neutral')
+    const trendSymbol = trend > 0 ? '▲' : trend < 0 ? '▼' : '•'
+
     return (
         <div
             className={`kpi-card animate-in animate-delay-${delay}`}
@@ -30,10 +35,10 @@ function KpiCard({ label, value, icon, trend, trendLabel, accentColor, delay }) 
                     {icon}
                 </div>
             </div>
-            <div className="kpi-value">{value}</div>
+            <div className="kpi-value" style={valueColor ? { color: valueColor } : undefined}>{value}</div>
             <div className="kpi-footer">
-                <span className={trend > 0 ? 'trend-up' : 'trend-down'}>
-                    {trend > 0 ? '▲' : '▼'} {Math.abs(trend)}%
+                <span className={trendClass}>
+                    {trendSymbol} {Math.abs(trend)}%
                 </span>
                 <span>{trendLabel}</span>
             </div>
@@ -118,8 +123,7 @@ function ExpensesChart({ monthlyTotals, budget }) {
 function DonutChart({ categories, totalDepenses }) {
     if (!categories || categories.length === 0) return <div style={{ minHeight: 250, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>Pas de données de catégories</div>
 
-    // Garder seulement le top 5
-    const topCats = categories.slice(0, 5)
+    const displayedCategories = categories
 
     // Calculer un Custom Label personnalisé pour le centre du Donut
     const renderCenterLabel = () => {
@@ -136,12 +140,12 @@ function DonutChart({ categories, totalDepenses }) {
     }
 
     return (
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'center', minHeight: '260px', padding: '10px 0' }}>
-            <div style={{ width: '160px', height: '160px', position: 'relative' }}>
+        <div className="donut-container dashboard-donut-layout" style={{ minHeight: '260px', padding: '10px 0' }}>
+            <div className="dashboard-donut-chart" style={{ position: 'relative' }}>
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                         <Pie
-                            data={topCats}
+                            data={displayedCategories}
                             cx="50%"
                             cy="50%"
                             innerRadius={55}
@@ -151,7 +155,7 @@ function DonutChart({ categories, totalDepenses }) {
                             stroke="none"
                             cornerRadius={4}
                         >
-                            {topCats.map((entry, index) => (
+                            {displayedCategories.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={entry.color || '#4f8ef7'} />
                             ))}
                         </Pie>
@@ -171,10 +175,10 @@ function DonutChart({ categories, totalDepenses }) {
                 </ResponsiveContainer>
             </div>
 
-            <div className="donut-legend" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {topCats.map((d) => (
-                    <div key={d.name} className="legend-item" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div className="donut-legend dashboard-donut-legend" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {displayedCategories.map((d) => (
+                    <div key={d.name} className="legend-item dashboard-legend-item" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div className="dashboard-legend-main" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             <div className="legend-dot" style={{ background: d.color || '#4f8ef7', width: '10px', height: '10px', borderRadius: '50%' }} />
                             <div className="legend-label" style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>{d.name}</div>
                         </div>
@@ -186,7 +190,7 @@ function DonutChart({ categories, totalDepenses }) {
     )
 }
 
-export default function Dashboard() {
+export default function Dashboard({ onNavigate }) {
     const { period } = useApp()
 
     const [stats, setStats] = useState({
@@ -230,10 +234,26 @@ export default function Dashboard() {
 
     if (loading) return <div>Chargement sécurisé des données...</div>
 
+    const projectionUsageRatio = Number(stats.budget_fixe || 0) > 0
+        ? Number(stats.projection_fin_mois || 0) / Number(stats.budget_fixe)
+        : 0
+    const projectionAccentColor =
+        projectionUsageRatio > 1
+            ? 'var(--red)'
+            : projectionUsageRatio > 0.5
+                ? 'var(--gold)'
+                : 'var(--green)'
+    const projectionTrendTone =
+        projectionUsageRatio > 1
+            ? 'trend-down'
+            : projectionUsageRatio > 0.5
+                ? 'trend-warn'
+                : 'trend-up'
+
     return (
         <div>
             {/* ── KPI Row ── */}
-            <div className="grid-4" style={{ marginBottom: 24 }}>
+            <div className="grid-4 dashboard-kpi-grid" style={{ marginBottom: 24 }}>
                 <KpiCard
                     label={<>Dépenses ({period}m) <span className="bdd-tag">api</span></>}
                     value={`${Number(stats.total_depenses).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`}
@@ -244,12 +264,13 @@ export default function Dashboard() {
                     delay={1}
                 />
                 <KpiCard
-                    label={<>Budget restant ({period}m) <span className="bdd-tag">api</span></>}
+                    label={<>Budget restant <span className="bdd-tag">api</span></>}
                     value={`${Number(stats.budget_restant).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €`}
                     icon="💰"
                     trend={stats.budget_restant >= 0 ? stats.pct_budget_restant : -(stats.pct_depassement)}
                     trendLabel={stats.budget_restant >= 0 ? "du budget dispo." : "de dépassement"}
                     accentColor={stats.budget_restant >= 0 ? "var(--green)" : "var(--red)"}
+                    valueColor={stats.budget_restant >= 0 ? "var(--green)" : "var(--red)"}
                     delay={2}
                 />
                 <KpiCard
@@ -258,7 +279,8 @@ export default function Dashboard() {
                     icon="📆"
                     trend={stats.pct_marge_projection}
                     trendLabel={stats.pct_marge_projection >= 0 ? "de marge proj." : "de dépassement proj."}
-                    accentColor={stats.pct_marge_projection >= 0 ? "var(--gold)" : "var(--danger)"}
+                    accentColor={projectionAccentColor}
+                    trendTone={projectionTrendTone}
                     delay={3}
                 />
                 <KpiCard
@@ -273,7 +295,7 @@ export default function Dashboard() {
             </div>
 
             {/* ── Charts Row ── */}
-            <div className="grid-2" style={{ marginBottom: 24 }}>
+            <div className="grid-2 dashboard-charts-grid" style={{ marginBottom: 24 }}>
                 <div className="card animate-in animate-delay-1">
                     <div className="section-header">
                         <span className="section-title">Dépenses vs Budget <span className="bdd-tag">api</span></span>
@@ -294,9 +316,16 @@ export default function Dashboard() {
             <div className="card animate-in animate-delay-3">
                 <div className="section-header">
                     <span className="section-title">Derniers tickets analysés <span className="bdd-tag">bdd</span></span>
-                    <span className="section-link">Voir tout →</span>
+                    <button
+                        type="button"
+                        className="section-link"
+                        onClick={() => onNavigate?.('historique')}
+                    >
+                        Voir tout {'\u2192'}
+                    </button>
                 </div>
-                <table className="data-table">
+                <div className="dashboard-recent-table-wrap">
+                <table className="data-table dashboard-recent-table">
                     <thead>
                         <tr>
                             <th>Magasin</th>
@@ -310,11 +339,11 @@ export default function Dashboard() {
                     <tbody>
                         {recentTickets.map((t) => (
                             <tr key={t.id} style={{ cursor: 'pointer' }}>
-                                <td>
+                                <td data-label="Magasin">
                                     <div style={{ fontWeight: 600 }}>🏪 {t.nom_marchand}</div>
                                 </td>
-                                <td style={{ color: 'var(--text-secondary)' }}>{new Date(t.date_achat).toLocaleDateString()}</td>
-                                <td>
+                                <td data-label="Date" style={{ color: 'var(--text-secondary)' }}>{new Date(t.date_achat).toLocaleDateString()}</td>
+                                <td data-label="Catégorie principale">
                                     <span className="badge" style={{
                                         background: (t.categorie?.code_couleur_hex || '#4f8ef7') + '20',
                                         color: t.categorie?.code_couleur_hex || '#4f8ef7',
@@ -322,17 +351,18 @@ export default function Dashboard() {
                                         {t.categorie?.nom || "Non catégorisé"}
                                     </span>
                                 </td>
-                                <td style={{ color: 'var(--text-secondary)' }}>{t.articles?.length || 0} articles</td>
-                                <td>
+                                <td data-label="Produits" style={{ color: 'var(--text-secondary)' }}>{t.articles?.length || 0} articles</td>
+                                <td data-label="Montant">
                                     <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}>
                                         {Number(t.montant_total).toFixed(2)} €
                                     </span>
                                 </td>
-                                <td><span className="badge badge-green">✓ {t.statut}</span></td>
+                                <td data-label="Statut"><span className="badge badge-green">✓ {t.statut}</span></td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     )

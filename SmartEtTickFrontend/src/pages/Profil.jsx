@@ -96,7 +96,7 @@ export default function Profil() {
     }
 
     return (
-        <div style={{ maxWidth: 860, margin: '0 auto' }}>
+        <div className="profile-page" style={{ maxWidth: 860, margin: '0 auto' }}>
 
             {/* ── En-tête profil ── */}
             <div className="profile-hero animate-in">
@@ -123,7 +123,7 @@ export default function Profil() {
                         </div>
                     </div>
                 </div>
-                <div style={{ marginRight: 24 }}>
+                <div className="profile-brand-block" style={{ marginRight: 24 }}>
                     <div className="sidebar-logo" style={{ margin: 0 }}>
                         <div className="sidebar-logo-icon">🧾</div>
                         <div className="sidebar-logo-text">Smart<span>&</span>Tick</div>
@@ -235,7 +235,7 @@ export default function Profil() {
 
                     <div className="form-group" style={{ marginBottom: 16 }}>
                         <label className="form-label">Mot de passe</label>
-                        <div style={{ display: 'flex', gap: 10 }}>
+                        <div className="profile-password-row" style={{ display: 'flex', gap: 10 }}>
                             <input type="password" className="form-input" defaultValue="••••••••••••" disabled />
                             <button className="btn btn-ghost">Modifier</button>
                         </div>
@@ -267,7 +267,7 @@ export default function Profil() {
                 </div>
             </div>
 
-            <div className="animate-in animate-delay-3" style={{ marginTop: 24, textAlign: 'right' }}>
+            <div className="animate-in animate-delay-3 profile-logout-row" style={{ marginTop: 24, textAlign: 'right' }}>
                 <button className="btn btn-danger" onClick={logout}>
                     Déconnexion <span className="bdd-tag" style={{ borderColor: 'rgba(217, 48, 37, 0.4)', color: 'var(--red)', background: 'var(--red-dim)' }}>api</span>
                 </button>

@@ -4,7 +4,7 @@ export default function Parametres() {
     const { theme, toggleTheme, period, setPeriod } = useApp()
 
     return (
-        <div style={{ maxWidth: 680, margin: '0 auto' }}>
+        <div className="settings-page" style={{ maxWidth: 680, margin: '0 auto' }}>
 
             {/* ── Préférences d'affichage ── */}
             <div className="card animate-in">

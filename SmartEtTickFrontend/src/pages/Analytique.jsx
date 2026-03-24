@@ -66,7 +66,7 @@ export default function Analytique() {
                         <span className="badge badge-gold">Ce mois</span>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className="analytics-category-list" style={{ display: 'flex', flexDirection: 'column' }}>
                         {data.categories.length === 0 && <div style={{ color: 'var(--text-muted)' }}>Aucune donnée sur cette période.</div>}
                         {data.categories.map((c) => (
                             <div key={c.name} className="category-bar">
@@ -87,7 +87,7 @@ export default function Analytique() {
                     </div>
 
                     <div className="divider" />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div className="analytics-total-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>Total de la période</span>
                         <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, color: 'var(--text-primary)' }}>
                             {data.total_depenses.toFixed(2)} € <span className="bdd-tag">api</span>
@@ -110,7 +110,7 @@ export default function Analytique() {
                         <div style={{ fontFamily: 'var(--font-display)', fontSize: 36, fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-1px' }}>
                             {data.total_depenses.toFixed(2)} <span style={{ fontSize: 20, color: 'var(--text-secondary)' }}>€</span> <span className="bdd-tag" style={{ verticalAlign: 'middle', marginBottom: 6 }}>api</span>
                         </div>
-                        <div style={{ display: 'flex', gap: 8, marginTop: 6 }}>
+                    <div className="analytics-trend-row" style={{ display: 'flex', gap: 8, marginTop: 6 }}>
                             <span className="trend-down">▼ 6.2%</span>
                             <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>vs même période l'année dernière</span>
                         </div>
@@ -124,8 +124,8 @@ export default function Analytique() {
                             const pct = v ? (v / max) * 100 : 0
                             const dateLabel = new Date(m + "-01").toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' })
                             return (
-                                <div key={m} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                    <div style={{ width: 60, fontSize: 11, color: 'var(--text-muted)', textAlign: 'right' }}>{dateLabel}</div>
+                                <div key={m} className="analytics-month-row" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                                    <div className="analytics-month-label" style={{ width: 60, fontSize: 11, color: 'var(--text-muted)', textAlign: 'right' }}>{dateLabel}</div>
                                     <div style={{ flex: 1, height: 8, background: 'var(--bg-hover)', borderRadius: 4, overflow: 'hidden' }}>
                                         <div style={{
                                             height: '100%',
@@ -135,7 +135,7 @@ export default function Analytique() {
                                             transition: 'width 1s ease',
                                         }} />
                                     </div>
-                                    <div style={{
+                                    <div className="analytics-month-amount" style={{
                                         width: 80,
                                         textAlign: 'right',
                                         fontFamily: 'var(--font-display)',

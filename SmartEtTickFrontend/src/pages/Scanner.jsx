@@ -512,7 +512,7 @@ export default function Scanner() {
                 </div>
               ) : (
                 <div style={{ overflowX: 'auto' }}>
-                  <table className="data-table">
+                  <table className="data-table responsive-table">
                     <thead>
                       <tr>
                         <th>Article detecte</th>
@@ -524,20 +524,20 @@ export default function Scanner() {
                     <tbody>
                       {scanResult.articles.map((item, index) => (
                         <tr key={`${item.nom}-${index}`}>
-                          <td>
+                          <td data-label="Article détecté">
                             <div style={{ fontWeight: 500, fontFamily: 'monospace', fontSize: 12 }}>
                               {item.nom}
                             </div>
                           </td>
-                          <td>
+                          <td data-label="Catégorie prédite">
                             <span className="badge badge-gray" style={{ color: 'var(--text-main)', border: '1px solid var(--border)' }}>
                               {item.categorie}
                             </span>
                           </td>
-                          <td style={{ minWidth: 110 }}>
+                          <td data-label="Confiance" style={{ minWidth: 110 }}>
                             <ConfidenceBar value={(item.confiance_ocr || 0) * 100} />
                           </td>
-                          <td style={{ textAlign: 'right', fontWeight: 700 }}>
+                          <td data-label="Prix" style={{ textAlign: 'right', fontWeight: 700 }}>
                             {item.prix > 0 ? `${Number(item.prix).toFixed(2)} EUR` : '-'}
                           </td>
                         </tr>
