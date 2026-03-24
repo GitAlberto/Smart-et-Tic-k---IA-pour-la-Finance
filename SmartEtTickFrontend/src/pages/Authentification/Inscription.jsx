@@ -44,7 +44,7 @@ export default function Inscription({ onRegister, onNavigate }) {
                     {error && <div style={{ color: 'var(--red)', fontSize: '13px', background: 'var(--red-dim)', padding: '10px', borderRadius: '4px' }}>{error}</div>}
 
                     <div className="form-grid">
-                        <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                        <div className="form-group auth-form-full-span" style={{ gridColumn: 'span 2' }}>
                             <label className="form-label">Pseudo (Unique)</label>
                             <input
                                 type="text"

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import { dataApi } from '../services/dataApi'
 
 const formatSource = (source) => {
@@ -25,6 +25,7 @@ export default function Historique() {
   const [sort, setSort] = useState('date')
   const [tickets, setTickets] = useState([])
   const [loading, setLoading] = useState(true)
+  const [expandedTicketId, setExpandedTicketId] = useState(null)
 
   useEffect(() => {
     const fetchAllTickets = async () => {
@@ -68,24 +69,28 @@ export default function Historique() {
   const totalAmount = filteredTickets.reduce((sum, ticket) => sum + Number(ticket.montant_total), 0)
   const manualEntries = filteredTickets.filter((ticket) => ticket.source_saisie === 'manuel').length
 
+  const toggleTicketDetails = (ticketId) => {
+    setExpandedTicketId((current) => (current === ticketId ? null : ticketId))
+  }
+
   if (loading) return <div>Chargement de votre historique complet...</div>
 
   return (
     <div>
-      <div className="grid-4" style={{ marginBottom: 20 }}>
+      <div className="grid-4 history-kpi-grid" style={{ marginBottom: 20 }}>
         {[
-          { label: 'Total tickets', value: filteredTickets.length, icon: 'DB' },
-          { label: 'Montant total', value: `${totalAmount.toFixed(2)} EUR`, icon: 'EUR' },
-          { label: 'Moyenne', value: `${(totalAmount / (filteredTickets.length || 1)).toFixed(2)} EUR`, icon: 'AVG' },
-          { label: 'Saisies manuelles', value: manualEntries, icon: 'MAN' },
+          { label: 'Total tickets', value: filteredTickets.length, icon: '🧾' },
+          { label: 'Montant total', value: `${totalAmount.toFixed(2)} EUR`, icon: '€' },
+          { label: 'Moyenne', value: `${(totalAmount / (filteredTickets.length || 1)).toFixed(2)} EUR`, icon: '📊' },
+          { label: 'Saisies manuelles', value: manualEntries, icon: '⌨️' },
         ].map((stat, index) => (
-          <div key={index} className="card animate-in" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--green)' }}>{stat.icon}</div>
+          <div key={index} className="card animate-in history-kpi-card" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div className="history-kpi-icon" style={{ fontSize: 14, fontWeight: 700, color: 'var(--green)' }}>{stat.icon}</div>
             <div>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <div className="history-kpi-label" style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 {stat.label}
               </div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, marginTop: 2 }}>
+              <div className="history-kpi-value" style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 700, marginTop: 2 }}>
                 {stat.value}
               </div>
             </div>
@@ -148,14 +153,14 @@ export default function Historique() {
             Aucun ticket ne correspond a ces filtres pour le moment.
           </div>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table className="data-table">
+          <div className="history-table-wrap">
+            <table className="data-table history-table">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Magasin</th>
                   <th>Date</th>
-                  <th>Categorie</th>
+                  <th>Catégorie principale</th>
                   <th>Source</th>
                   <th>Montant</th>
                   <th>Statut</th>
@@ -167,43 +172,94 @@ export default function Historique() {
                   const categoryName = ticket.categorie?.nom || 'Non categorise'
                   const source = formatSource(ticket.source_saisie)
                   const status = formatStatus(ticket.statut)
+                  const isExpanded = expandedTicketId === ticket.id
 
                   return (
-                    <tr key={ticket.id}>
-                      <td style={{ color: 'var(--text-muted)', fontSize: 12 }}>#{index + 1}</td>
-                      <td>
-                        <div style={{ fontWeight: 600 }}>{ticket.nom_marchand}</div>
-                        {ticket.est_exceptionnel && (
-                          <div style={{ marginTop: 6 }}>
-                            <span className="badge badge-gold">Achat exceptionnel</span>
+                    <Fragment key={ticket.id}>
+                      <tr
+                        className={`history-ticket-row ${isExpanded ? 'open' : ''}`}
+                        onClick={() => toggleTicketDetails(ticket.id)}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault()
+                            toggleTicketDetails(ticket.id)
+                          }
+                        }}
+                        tabIndex={0}
+                        aria-expanded={isExpanded}
+                      >
+                        <td data-label="#" style={{ color: 'var(--text-muted)', fontSize: 12 }}>
+                          <span className="history-row-toggle">
+                            <span className="history-row-chevron">{isExpanded ? '▾' : '▸'}</span>
+                            #{index + 1}
+                          </span>
+                        </td>
+                        <td data-label="Magasin">
+                          <div className="history-merchant-cell">
+                            <span className="history-merchant-name">{ticket.nom_marchand}</span>
+                            {ticket.est_exceptionnel && (
+                              <span className="badge badge-gold">Achat exceptionnel</span>
+                            )}
+                            {ticket.texte_brut_extrait && (
+                              <span className="badge badge-gray">Note dispo</span>
+                            )}
                           </div>
-                        )}
-                        {ticket.texte_brut_extrait && (
-                          <div style={{ color: 'var(--text-muted)', fontSize: 12, marginTop: 3 }}>
-                            Note disponible
-                          </div>
-                        )}
-                      </td>
-                      <td style={{ color: 'var(--text-secondary)', fontFamily: 'monospace', fontSize: 12 }}>
-                        {new Date(ticket.date_achat).toLocaleDateString('fr-FR')}
-                      </td>
-                      <td>
-                        <span className="badge" style={{ background: `${categoryColor}20`, color: categoryColor }}>
-                          {categoryName}
-                        </span>
-                      </td>
-                      <td>
-                        <span className={`badge ${source.className}`}>{source.label}</span>
-                      </td>
-                      <td>
-                        <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15 }}>
-                          {Number(ticket.montant_total).toFixed(2)} EUR
-                        </span>
-                      </td>
-                      <td>
-                        <span className={`badge ${status.className}`}>{status.label}</span>
-                      </td>
-                    </tr>
+                        </td>
+                        <td data-label="Date" style={{ color: 'var(--text-secondary)', fontFamily: 'monospace', fontSize: 12 }}>
+                          {new Date(ticket.date_achat).toLocaleDateString('fr-FR')}
+                        </td>
+                        <td data-label="Catégorie principale">
+                          <span className="badge" style={{ background: `${categoryColor}20`, color: categoryColor }}>
+                            {categoryName}
+                          </span>
+                        </td>
+                        <td data-label="Source">
+                          <span className={`badge ${source.className}`}>{source.label}</span>
+                        </td>
+                        <td data-label="Montant">
+                          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15 }}>
+                            {Number(ticket.montant_total).toFixed(2)} EUR
+                          </span>
+                        </td>
+                        <td data-label="Statut">
+                          <span className={`badge ${status.className}`}>{status.label}</span>
+                        </td>
+                      </tr>
+                      {isExpanded && (
+                        <tr className="history-details-row">
+                          <td colSpan={7}>
+                            <div className="history-details-panel">
+                              <div className="history-details-title">Articles du ticket</div>
+                              {ticket.articles?.length ? (
+                                <div className="history-articles-list">
+                                  {ticket.articles.map((article) => {
+                                    const articleCategoryColor = article.categorie?.code_couleur_hex || '#64748b'
+                                    const articleCategoryName = article.categorie?.nom || 'Non categorise'
+                                    const lineTotal = Number(article.prix || 0) * Number(article.quantite || 0)
+
+                                    return (
+                                      <div key={article.id} className="history-article-row">
+                                        <div className="history-article-name">{article.nom}</div>
+                                        <div className="history-article-category">
+                                          <span className="badge" style={{ background: `${articleCategoryColor}20`, color: articleCategoryColor }}>
+                                            {articleCategoryName}
+                                          </span>
+                                        </div>
+                                        <div className="history-article-amount">{lineTotal.toFixed(2)} EUR</div>
+                                      </div>
+                                    )
+                                  })}
+                                </div>
+                              ) : (
+                                <div className="history-details-empty">
+                                  Aucun article detaille pour ce ticket.
+                                </div>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </Fragment>
                   )
                 })}
               </tbody>

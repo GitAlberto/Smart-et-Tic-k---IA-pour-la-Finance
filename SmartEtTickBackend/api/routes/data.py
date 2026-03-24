@@ -6,7 +6,7 @@ from typing import List, Optional
 from dateutil.relativedelta import relativedelta
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import func
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 import models
 import schemas
@@ -23,86 +23,124 @@ def _apply_ticket_period(query, start_date, end_date=None):
     return query
 
 
+def _load_tickets_with_categories(user_id, start_date, db: Session, end_date=None):
+    return (
+        _apply_ticket_period(
+            db.query(models.Ticket)
+            .options(
+                selectinload(models.Ticket.categorie),
+                selectinload(models.Ticket.articles).selectinload(models.Article.categorie),
+            )
+            .filter(models.Ticket.utilisateur_id == user_id),
+            start_date,
+            end_date,
+        )
+        .all()
+    )
+
+
 def _collect_active_categories(user_id, start_date, db: Session, end_date=None):
-    article_query = (
-        db.query(models.Article.categorie_id)
-        .join(models.Ticket, models.Article.ticket_id == models.Ticket.id)
-        .filter(models.Ticket.utilisateur_id == user_id)
-        .filter(models.Article.categorie_id.isnot(None))
-    )
-    article_query = _apply_ticket_period(article_query, start_date, end_date)
+    tickets = _load_tickets_with_categories(user_id, start_date, db, end_date)
 
-    ticket_query = (
-        db.query(models.Ticket.categorie_id)
-        .filter(models.Ticket.utilisateur_id == user_id)
-        .filter(models.Ticket.categorie_id.isnot(None))
-        .filter(~models.Ticket.articles.any())
-    )
-    ticket_query = _apply_ticket_period(ticket_query, start_date, end_date)
+    category_ids = set()
+    has_uncategorized_bucket = False
 
-    article_ids = {category_id for (category_id,) in article_query.all() if category_id}
-    ticket_ids = {category_id for (category_id,) in ticket_query.all() if category_id}
+    for ticket in tickets:
+        if ticket.categorie_id:
+            category_ids.add(ticket.categorie_id)
+        elif not ticket.articles:
+            has_uncategorized_bucket = True
+        for article in ticket.articles:
+            if article.categorie_id:
+                category_ids.add(article.categorie_id)
+            elif float(article.prix or 0) * float(article.quantite or 0) > 0:
+                # We expose uncategorized scanned lines as a visible bucket instead of
+                # dropping them from the KPI, which was making the dashboard feel truncated.
+                has_uncategorized_bucket = True
 
-    return len(article_ids | ticket_ids)
+    return len(category_ids) + (1 if has_uncategorized_bucket else 0)
 
 
 def _build_category_breakdown(user_id, start_date, db: Session, end_date=None):
-    article_query = (
-        db.query(
-            models.Category.id.label("category_id"),
-            models.Category.nom.label("nom"),
-            models.Category.code_couleur_hex.label("color"),
-            models.Category.icone.label("icon"),
-            func.sum(models.Article.prix * models.Article.quantite).label("total_amount"),
-            func.count(func.distinct(models.Ticket.id)).label("tickets_count"),
-        )
-        .join(models.Article, models.Article.categorie_id == models.Category.id)
-        .join(models.Ticket, models.Article.ticket_id == models.Ticket.id)
-        .filter(models.Ticket.utilisateur_id == user_id)
-    )
-    article_query = _apply_ticket_period(article_query, start_date, end_date)
-    article_rows = article_query.group_by(models.Category.id).all()
-
-    ticket_query = (
-        db.query(
-            models.Category.id.label("category_id"),
-            models.Category.nom.label("nom"),
-            models.Category.code_couleur_hex.label("color"),
-            models.Category.icone.label("icon"),
-            func.sum(models.Ticket.montant_total).label("total_amount"),
-            func.count(models.Ticket.id).label("tickets_count"),
-        )
-        .join(models.Ticket, models.Ticket.categorie_id == models.Category.id)
-        .filter(models.Ticket.utilisateur_id == user_id)
-        .filter(~models.Ticket.articles.any())
-    )
-    ticket_query = _apply_ticket_period(ticket_query, start_date, end_date)
-    ticket_rows = ticket_query.group_by(models.Category.id).all()
+    tickets = _load_tickets_with_categories(user_id, start_date, db, end_date)
 
     combined = {}
-    for row in [*article_rows, *ticket_rows]:
-        existing = combined.get(row.category_id)
-        if existing is None:
-            combined[row.category_id] = {
-                "name": row.nom,
-                "amount": float(row.total_amount or 0),
-                "color": row.color,
-                "icon": row.icon or "Box",
-                "tickets": int(row.tickets_count or 0),
-            }
+    uncategorized_amount = 0.0
+    uncategorized_tickets = 0
+
+    for ticket in tickets:
+        ticket_total = float(ticket.montant_total or 0)
+        if ticket_total <= 0:
+            continue
+
+        per_ticket_amounts = defaultdict(float)
+        per_ticket_meta = {}
+        line_amounts = []
+
+        for article in ticket.articles:
+            line_total = float(article.prix or 0) * float(article.quantite or 0)
+            if line_total <= 0:
+                continue
+            line_amounts.append((article, line_total))
+
+        if line_amounts:
+            # OCR lines can be noisy: we rescale article totals to the ticket total so the
+            # category chart reflects the real spend even when line totals over/under-shoot.
+            article_total = sum(line_total for _, line_total in line_amounts)
+            normalization_ratio = ticket_total / article_total if article_total > 0 else 0.0
+            uncategorized_for_ticket = 0.0
+
+            for article, line_total in line_amounts:
+                normalized_amount = line_total * normalization_ratio
+                if article.categorie_id and article.categorie:
+                    per_ticket_amounts[article.categorie_id] += normalized_amount
+                    per_ticket_meta[article.categorie_id] = article.categorie
+                else:
+                    uncategorized_for_ticket += normalized_amount
+
+            if uncategorized_for_ticket > 0:
+                uncategorized_amount += uncategorized_for_ticket
+                uncategorized_tickets += 1
+        elif ticket.categorie_id and ticket.categorie:
+            per_ticket_amounts[ticket.categorie_id] += ticket_total
+            per_ticket_meta[ticket.categorie_id] = ticket.categorie
         else:
-            existing["amount"] += float(row.total_amount or 0)
-            existing["tickets"] += int(row.tickets_count or 0)
+            uncategorized_amount += ticket_total
+            uncategorized_tickets += 1
+
+        for category_id, amount in per_ticket_amounts.items():
+            meta = per_ticket_meta[category_id]
+            existing = combined.get(category_id)
+            if existing is None:
+                combined[category_id] = {
+                    "name": meta.nom,
+                    "amount": amount,
+                    "color": meta.code_couleur_hex,
+                    "icon": meta.icone or "Box",
+                    "tickets": 1,
+                }
+            else:
+                existing["amount"] += amount
+                existing["tickets"] += 1
+
+    if uncategorized_amount > 0:
+        combined["uncategorized"] = {
+            "name": "Non categorise",
+            "amount": uncategorized_amount,
+            "color": "#64748b",
+            "icon": "Tag",
+            "tickets": uncategorized_tickets,
+        }
 
     categorized_total = sum(item["amount"] for item in combined.values())
-    formatted = []
-    for item in combined.values():
-        formatted.append(
-            {
-                **item,
-                "pct": round((item["amount"] / categorized_total) * 100, 1) if categorized_total > 0 else 0,
-            }
-        )
+    formatted = [
+        {
+            **item,
+            "amount": round(item["amount"], 2),
+            "pct": round((item["amount"] / categorized_total) * 100, 1) if categorized_total > 0 else 0,
+        }
+        for item in combined.values()
+    ]
 
     formatted.sort(key=lambda item: item["amount"], reverse=True)
     return formatted
@@ -226,12 +264,12 @@ def get_dashboard_stats(
     )
 
     budget_fixe = float(user.budget_fixe or 1500.0)
-    budget_fixe_periode = budget_fixe * period_months
 
-    # We expose the remaining budget because it is directly actionable for the user:
-    # how much room is left before the selected period budget is exhausted.
-    budget_restant = float(budget_fixe_periode - total_spent)
-    pct_budget_restant = float((budget_restant / budget_fixe_periode) * 100) if budget_fixe_periode > 0 else 0.0
+    # The fixed budget is a single configured monthly reference. We keep that value
+    # unchanged even when the user browses 3m / 6m / 12m, because multiplying it by
+    # the selected period was making the KPI feel artificial and harder to interpret.
+    budget_restant = float(budget_fixe - total_spent)
+    pct_budget_restant = float((budget_restant / budget_fixe) * 100) if budget_fixe > 0 else 0.0
 
     today = datetime.now().date()
     current_month_start = today.replace(day=1)
@@ -254,9 +292,9 @@ def get_dashboard_stats(
 
     depassement = 0.0
     pct_depassement = 0.0
-    if total_spent > budget_fixe_periode:
-        depassement = float(total_spent - budget_fixe_periode)
-        pct_depassement = float((depassement / budget_fixe_periode) * 100)
+    if total_spent > budget_fixe:
+        depassement = float(total_spent - budget_fixe)
+        pct_depassement = float((depassement / budget_fixe) * 100) if budget_fixe > 0 else 0.0
 
     return {
         "total_depenses": float(total_spent),
