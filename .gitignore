@@ -6,6 +6,7 @@ Dataset brute
 
 # Le dataset augmenté
 dataset_augmente
+Dataset brute
 
 # Les fichiers de configuration
 *.env
